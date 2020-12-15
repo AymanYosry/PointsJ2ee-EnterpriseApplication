@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="false" key="J2EE_EXPORT_OVERWRITE"/>
+	<item value="false" key="J2EE_EXPORT_SOURCE"/>
+	<list key="J2EE_EXPORT_JST_EAR">
+		<item value="D:\DEVELOPMENT\build\POINTS\Server\Points.ear"/>
+		<item value="D:\DEVELOPMENT\build\POINTS\Server\SIG\Points.ear"/>
+		<item value="D:\DEVELOPMENT\build\POINTS\Points.ear"/>
+	</list>
+	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="D:\DEVELOPMENT\build\POINTS\Server\PointsWeb.war"/>
+		<item value="D:\DEVELOPMENT\build\POINTS\PointsWeb.war"/>
+		<item value="D:\DEVELOPMENT\build\POINTS\Server\SIG\PointsWeb.war"/>
+	</list>
+</section>

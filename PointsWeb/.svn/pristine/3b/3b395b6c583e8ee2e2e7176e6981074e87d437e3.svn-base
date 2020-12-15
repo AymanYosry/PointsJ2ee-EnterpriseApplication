@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form>
+			<p:panelGrid  styleClass="ui-noborder" columns="2">
+
+				<p:outputLabel for="currency" value="#{labels.currency}" />
+				<p:inplace disabled="#{!sysAdminAgentContractBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<f:facet name="output">
+						<p:outputLabel value="#{sysAdminAgentContractBean.currencyName}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:selectOneMenu id="currency" value="#{sysAdminAgentContractBean.currencyId}">
+							<f:selectItem itemLabel="Select One" itemValue="" />
+							<f:selectItems value="#{sysAdminAgentContractBean.currenciesList}" var="currency"
+								itemLabel="#{currency.get(entityConstantsBean.currency.currencyName)}" itemValue="#{currency.get(entityConstantsBean.currency.currencyId)}" />
+						</p:selectOneMenu>
+					</f:facet>
+				</p:inplace>
+
+				<p:outputLabel for="discountPercent" value="#{labels.discountPercent}" />
+				<p:inplace disabled="#{!sysAdminAgentContractBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<pe:inputNumber id="discountPercent" value="#{sysAdminAgentContractBean.discountPercent}" decimalPlaces="0" thousandSeparator="" minValue="1"
+						maxValue="100" required="true" />
+				</p:inplace>
+				<p:outputLabel for="pointsPercent" value="#{labels.pointsPercent}" />
+				<p:inplace disabled="#{!sysAdminAgentContractBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<pe:inputNumber id="pointsPercent" value="#{sysAdminAgentContractBean.pointsPercent}" decimalPlaces="2" thousandSeparator="" minValue="1"
+						maxValue="100" required="true" />
+				</p:inplace>
+				<p:outputLabel for="profitPercent" value="#{labels.profitPercent}" />
+				<p:inplace disabled="#{!sysAdminAgentContractBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<pe:inputNumber id="profitPercent" value="#{sysAdminAgentContractBean.profitPercent}" decimalPlaces="2" thousandSeparator="" minValue="1"
+						maxValue="100" required="true" />
+				</p:inplace>
+				<p:outputLabel for="startContractDate" value="#{labels.startContractDate}" />
+				<p:inplace disabled="#{!sysAdminAgentContractBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<p:calendar id="startContractDate" value="#{sysAdminAgentContractBean.startDate}" pattern="#{entityConstantsBean.dateFormat}" required="true" />
+				</p:inplace>
+				<p:outputLabel for="endContractDate" value="#{labels.endContractDate}" />
+				<p:inplace disabled="#{!sysAdminAgentContractBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<p:calendar id="endContractDate" value="#{sysAdminAgentContractBean.endDate}" pattern="#{entityConstantsBean.dateFormat}" required="true" />
+				</p:inplace>
+
+				<p:commandButton value="#{labels.block}" actionListener="#{sysAdminAgentContractBean.blockContract()}"
+					rendered="#{sysAdminAgentContractBean.statusId!=entityConstantsBean.status.blockStatusId}" />
+				<p:commandButton value="#{labels.block}" actionListener="#{sysAdminAgentContractBean.activateContract()}"
+					rendered="#{sysAdminAgentContractBean.statusId!=entityConstantsBean.status.activeStatusId}" />
+				<p:commandButton value="#{labels.update}" actionListener="#{sysAdminAgentContractBean.updateAgentContract()}"
+					rendered="#{sysAdminAgentContractBean.updateEnabled}" update="growl">
+
+				</p:commandButton>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+
+</html>

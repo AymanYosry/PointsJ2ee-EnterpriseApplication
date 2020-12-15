@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form>
+			<p:panelGrid  styleClass="ui-noborder" columns="2" cellpadding="5">
+				<p:outputLabel for="eventDesc" value="#{labels.eventDesc}" />
+				<p:inplace disabled="#{!eventBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<p:inputTextarea id="eventDesc" value="#{eventBean.eventDesc}" required="true" />
+				</p:inplace>
+				<p:outputLabel for="eventDate" value="#{labels.eventDate}" />
+				<p:inplace disabled="#{!eventBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<p:calendar id="eventDate" value="#{eventBean.eventDate}" required="true" pattern="dd-MM-yyyy"/>
+				</p:inplace>
+				<p:outputLabel for="pointsValue" value="#{labels.pointsValue}" />
+				<p:inplace disabled="#{!eventBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<p:inputText id="pointsValue" value="#{eventBean.pointsValue}" required="true" />
+				</p:inplace>
+				<p:outputLabel for="periodic" value="#{labels.periodic}" />
+				<p:inplace disabled="#{!eventBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<p:selectBooleanCheckbox id="periodic" value="#{eventBean.periodic}" />
+				</p:inplace>
+				<p:commandButton value="#{labels.update}" action="#{eventBean.updateEvent()}" rendered="#{eventBean.updateEnabled}"/>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

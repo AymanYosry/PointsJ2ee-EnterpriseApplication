@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp">
+
+
+
+<ui:composition template="/resources/templates/common/layout.xhtml">
+	<ui:define name="add_new_panel">
+		<ui:include src="payment_add.xhtml" />
+	</ui:define>
+
+
+	<ui:define name="search_panel">
+		<p:panelGrid columns="7" styleClass="ui-noborder">
+			<p:outputLabel for="agent" value="#{labels.agent}" />
+			<p:selectOneMenu id="agent" value="#{sysAdminAgentPaymentBean.agentId}">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItems value="#{sysAdminAgentPaymentBean.allAgentsList}" var="agent" itemLabel="#{agent.get(entityConstantsBean.agent.tradeMark)}"
+					itemValue="#{agent.get(entityConstantsBean.agent.agentId)}" />
+			</p:selectOneMenu>
+			<p:outputLabel for="paymentDateFrom" value="#{labels.from} #{labels.paymentDate}" />
+			<p:calendar id="paymentDateFrom" value="#{sysAdminAgentPaymentBean.paymentDateFromSearch}" pattern="#{entityConstantsBean.dateFormat}" />
+			<p:outputLabel for="paymentDateTo" value="#{labels.to} #{labels.paymentDate}" />
+			<p:calendar id="paymentDateTo" value="#{sysAdminAgentPaymentBean.paymentDateToSearch}" pattern="#{entityConstantsBean.dateFormat}" />
+			<p:commandButton value="#{labels.search}" id="search" update="growl search_table" actionListener="#{sysAdminAgentPaymentBean.getAgentPayments()}" />
+		</p:panelGrid>
+
+	</ui:define>
+	<ui:define name="content_center">
+		<em:search_component table_bean="#{sysAdminAgentPaymentBean}"></em:search_component>
+	</ui:define>
+	<ui:define name="more_post_columns">
+		<p:column style="width:70px;text-align: center">
+			<p:commandLink ajax="true" actionListener="#{cc.attrs.table_bean.viewDetails(tableDataRow)}" icon="ui-icon-search" title="#{labels.cancel}"
+				rendered="${tableDataRow.get(entityConstantsBean.sysPayment.statusId)!=entityConstantsBean.status.blockStatusId}">
+				<p:outputLabel value="${labels.cancel}"></p:outputLabel>
+				<p:ajax event="dialogReturn" update="growl search_table" listener="#{cc.attrs.table_bean.postUpdateDialog}" />
+			</p:commandLink>
+		</p:column>
+	</ui:define>
+</ui:composition>
+
+</html>
+

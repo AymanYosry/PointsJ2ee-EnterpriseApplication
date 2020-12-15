@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+<f:loadBundle basename="resources.application" var="labels" />
+<h:head>
+	<h:outputStylesheet name="points-style.css" library="css" />
+	<h:outputStylesheet name="showcase.css" library="css" />
+	<h:outputStylesheet name="perfect-scrollbar.css" library="css" />
+	<h:outputStylesheet name="sh.css" library="css" />
+	<h:outputScript name="perfect-scrollbar.js" library="js" />
+	<h:outputScript name="showcase.js" library="js" />
+	<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+</h:head>
+
+<h:body id="layout_body">
+	<p:growl id="growl" autoUpdate="true" showDetail="true" />
+
+	<div id="page">
+		<!--		<div id="header">
+
+
+ 			<ui:insert name="header">
+
+				<ui:include src="header.xhtml" />
+			</ui:insert> 
+
+		</div>-->
+		<div id="content">
+			<p:layout id="content_layout" fullPage="true">
+				<p:layoutUnit position="west" resizable="true" size="200" collapsible="true" minSize="100" maxSize="250">
+					<ui:insert name="content_side_menu">
+						<ui:include src="content_side_menu.xhtml" />
+					</ui:insert>
+				</p:layoutUnit>
+
+				<p:layoutUnit id="content_center" position="center">
+
+					<f:facet name="header">
+						<p:panelGrid columns="6" styleClass="ui-noborder">
+							<p:outputLabel value="#{labels.welcomeHeading} #{roleSwitcherBean.loginName}"></p:outputLabel>
+							<p:outputLabel value="#{labels.agent} : #{roleSwitcherBean.loginAgentName}"
+								rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentSellerRoleId or roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId}"></p:outputLabel>
+							<ui:insert name="content_header">
+								<p:outputLabel />
+							</ui:insert>
+							<h:form>
+								<p:commandLink value="#{labels.activateAs} #{roleSwitcherBean.loginName}" action="#{roleSwitcherBean.activateAsUser()}"
+									rendered="#{roleSwitcherBean.currentRoleId!=entityConstantsBean.role.userRoleId}" ajax="false" />
+								<p:commandLink value="#{labels.activateAsAgent}" action="#{roleSwitcherBean.activateAsAgent()}"
+									rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.userRoleId and (authenticationBean.roleId==entityConstantsBean.role.agentAdminRoleId or authenticationBean.roleId==entityConstantsBean.role.agentSellerRoleId)}"
+									ajax="false" />
+								<p:commandLink value="#{labels.activateAsSystemAdmin}" action="#{roleSwitcherBean.activateAsSystemEmployee()}"
+									rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.userRoleId and authenticationBean.roleId==entityConstantsBean.role.systemAdminRoleId}"
+									ajax="false" />
+								<p:commandLink value="#{labels.activateAsSystemSales}" action="#{roleSwitcherBean.activateAsSystemEmployee()}"
+									rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.userRoleId and authenticationBean.roleId==entityConstantsBean.role.systemSalesRoleId}"
+									ajax="false" />
+								<!-- space to separate the logout link from the activate link -->
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<p:commandButton id="profileButton" value="#{roleSwitcherBean.loginName} #{labels.profile}" type="button" icon="fa fa-user"
+									 />
+								<p:menu overlay="true" trigger="profileButton" my="left top" at="left bottom">
+									<p:menuitem value="#{labels.updateProfile}" action="/pages/user/update_profile.xhtml" update="growl content_center" icon="fa fa-fw fa-edit" />
+									<p:menuitem value="#{labels.changePasswordBtn}" action="/change_password.xhtml" update="growl content_center" icon="fa fa-info-circle" />
+									<p:menuitem value="#{labels.logout}" action="#{authenticationBean.logout}" icon="fa fa-sign-out" />
+								</p:menu>
+
+								<!-- </p:panelGrid> -->
+							</h:form>
+						</p:panelGrid>
+					</f:facet>
+					<ui:insert name="content_center">
+						<ui:include src="content_center.xhtml" />
+					</ui:insert>
+				</p:layoutUnit>
+			</p:layout>
+		</div>
+
+		<!-- 	<div id="footer">
+			<ui:insert name="footer">
+				<ui:include src="footer.xhtml" />
+			</ui:insert>
+		</div> -->
+
+	</div>
+
+	<p:ajaxStatus style="width:64px;height:64px;position:fixed;right:5px;bottom:5px">
+		<f:facet name="start">
+			<p:graphicImage name="/images/loader.gif" />
+		</f:facet>
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+
+	<p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException" update="exceptionDialog" onexception="PF('exceptionDialog').show();" />
+	<p:dialog id="exceptionDialog" header="Exception: #{pfExceptionHandler.type} occured!" widgetVar="exceptionDialog" height="500px">
+			Message: #{pfExceptionHandler.message} <br />
+		<!-- StackTrace: 
+		<h:outputText value="#{pfExceptionHandler.formattedStackTrace}" escape="false" /> -->
+		<p:button onclick="document.location.href = document.location.href;" value="Reload!" />
+	</p:dialog>
+</h:body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form enctype="multipart/form-data">
+			<p:panelGrid  styleClass="ui-noborder" columns="2" cellpadding="5">
+				<p:outputLabel for="agentName" value="#{labels.agentName}" />
+				<p:outputLabel id="agentName" value="#{userAgentProductBean.agentName}" />
+				<p:outputLabel for="productName" value="#{labels.productName}" />
+				<p:outputLabel id="productName" value="#{userAgentProductBean.productName}" />
+				<p:outputLabel for="productPoints" value="#{labels.pointsValue}" />
+				<p:outputLabel id="productPoints" value="#{userAgentProductBean.pointsValue}" />
+				<p:outputLabel for="validityDate" value="#{labels.validityDate}" />
+				<p:outputLabel id="validityDate" value="#{userAgentProductBean.validityDateStr}"  pattern="#{entityConstantsBean.dateFormat}" />
+
+				<p:panelGrid  styleClass="ui-noborder">
+					<h:graphicImage url="#{'data:image/jpeg;charset=utf-8;base64, '}#{userAgentProductBean.photo}" width="100px" height="100px"
+						alt="photo not found" />
+				</p:panelGrid>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

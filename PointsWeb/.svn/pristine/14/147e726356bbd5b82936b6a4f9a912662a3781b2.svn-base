@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form>
+			<p:panelGrid columns="2" styleClass="ui-noborder">
+				<p:panelGrid styleClass="ui-noborder" columns="2" cellpadding="5">
+					<p:outputLabel for="branchName" value="#{labels.branchName}" />
+					<p:inplace disabled="#{!agentAdminAgentBranchBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<p:inputText id="branchName" value="#{agentAdminAgentBranchBean.branchName}" required="true" />
+					</p:inplace>
+					<p:outputLabel for="branchTel" value="#{labels.branchTel}" />
+					<p:inplace disabled="#{!agentAdminAgentBranchBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<p:inputText id="branchTel" value="#{agentAdminAgentBranchBean.tel}" required="true" />
+					</p:inplace>
+					<p:outputLabel for="stateId" value="#{labels.state}" />
+					<p:inplace disabled="#{!agentAdminAgentBranchBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<f:facet name="output">
+							<p:outputLabel value="#{agentAdminAgentBranchBean.stateName}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu id="stateId" value="#{agentAdminAgentBranchBean.stateId}">
+								<f:selectItem itemLabel="#{labels.selectOne}" />
+								<f:selectItems value="#{agentAdminAgentBranchBean.statesList}" var="state" itemLabel="#{state.get(entityConstantsBean.state.stateName)}"
+									itemValue="#{state.get(entityConstantsBean.state.stateId)}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:inplace>
+
+					<p:outputLabel for="address" value="#{labels.address}" />
+					<p:inplace disabled="#{!agentAdminAgentBranchBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<p:inputText id="address" value="#{agentAdminAgentBranchBean.address}" required="true" />
+					</p:inplace>
+
+					<p:outputLabel value="" />
+					<p:commandButton value="#{labels.update}" action="#{agentAdminAgentBranchBean.updateAgentBranch()}"
+						rendered="#{agentAdminAgentBranchBean.updateEnabled}" />
+				</p:panelGrid>
+				<p:panelGrid styleClass="ui-noborder" columns="1">
+					<f:facet name="header">
+						<p:outputLabel value="#{labels.branchLocationHeader}" />
+					</f:facet>
+					<p:panelGrid styleClass="ui-noborder" columns="2">
+						<p:inputText id="locationLatitude" value="#{agentAdminAgentBranchBean.locationLatitude}" required="true" title="#{labels.locationLatitude}" />
+						<p:inputText id="locationLongitude" value="#{agentAdminAgentBranchBean.locationLongitude}" required="true" title="#{labels.locationLongitude}" />
+					</p:panelGrid>
+					<p:gmap id="gmap" center="#{agentAdminAgentBranchBean.locationLatitude}, #{agentAdminAgentBranchBean.locationLongitude}" zoom="12" type="ROADMAP"
+						style="width:400px;height:300px" model="#{agentAdminAgentBranchBean.branchMapModel}">
+						<p:ajax event="pointSelect" listener="#{agentAdminAgentBranchBean.onPointSelect}" update="locationLatitude locationLongitude" />
+					</p:gmap>
+				</p:panelGrid>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

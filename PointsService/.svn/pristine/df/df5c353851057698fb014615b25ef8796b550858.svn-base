@@ -1,0 +1,76 @@
+/**
+ * 
+ */
+package com.ewhale.points.ws.interceptors;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.annotation.Priority;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.Provider;
+import javax.ws.rs.ext.ReaderInterceptor;
+import javax.ws.rs.ext.ReaderInterceptorContext;
+
+import org.jboss.resteasy.logging.Logger;
+
+import com.ewhale.points.common.exception.AuthenticationSecurityException;
+import com.ewhale.points.common.security.SecurityUtil;
+import com.ewhale.points.common.util.AppConstants;
+import com.ewhale.points.common.util.ExceptionConstants;
+import com.ewhale.points.ws.interceptors.annotations.namebinding.VerifyDigitaSignature;
+
+/**
+ * @author Ayman Yosry
+ * @updated Ahmad Khalil
+ */
+
+@Provider
+@Priority(value = 1)
+@VerifyDigitaSignature 
+public class ServiceDigitalSignaturePreInterceptor implements ReaderInterceptor
+{
+	protected Logger logger = Logger.getLogger(ServiceDigitalSignaturePreInterceptor.class);
+
+	@Override
+	public Object aroundReadFrom(ReaderInterceptorContext readerInterceptorContext)
+			throws IOException, WebApplicationException
+	{
+		String signatureHeaderValue = readerInterceptorContext.getHeaders()
+				.getFirst(AppConstants.SecurityConstants.SIGNATURE);
+		InputStream inputStream = readerInterceptorContext.getInputStream();
+
+		byte[] dataArr = new byte[inputStream.available()];
+		inputStream.read(dataArr);
+		String data = new String(dataArr);
+
+		logger.debug("############# signature in server reader interceptor : " + signatureHeaderValue);
+		logger.debug("############# data in server reader interceptor : " + data);
+		try
+		{
+			boolean isVerified = false;
+
+			isVerified = SecurityUtil.verify(data, signatureHeaderValue);
+			// isVerified = rsaVerify.verify(dataArr, signatureHeaderValue);
+			if (isVerified)
+			{
+				logger.debug("############# Signature verified");
+			}
+			else
+			{
+				logger.debug("############# Signature verification failed");
+			}
+		}
+		catch (AuthenticationSecurityException e)
+		{
+			logger.error("############# problem checking signature", e);
+			Response response = Response.status(e.getStatusCode()).entity(e.getMessage())
+					.type(ExceptionConstants.EXCEPTION_MESSAGE_TYPE).build();
+			throw new WebApplicationException("Problem While retrieving data", response);
+		}
+		readerInterceptorContext.setInputStream(new ByteArrayInputStream(dataArr));
+		return readerInterceptorContext.proceed();
+	}
+}

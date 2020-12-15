@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form>
+			<p:panelGrid columns="2">
+				<p:panelGrid styleClass="ui-noborder" columns="2" cellpadding="5">
+					<p:outputLabel for="agentName" value="#{labels.agentName}" />
+					<p:outputLabel id="agentName" value="#{userAgentBranchBean.agentTradeMark}" />
+
+					<p:outputLabel for="branchName" value="#{labels.branchName}" />
+					<p:outputLabel id="branchName" value="#{userAgentBranchBean.branchName}" />
+
+					<p:outputLabel for="branchTel" value="#{labels.branchTel}" />
+					<p:outputLabel id="branchTel" value="#{userAgentBranchBean.tel}" />
+
+					<p:outputLabel for="countryId" value="#{labels.country}" />
+					<p:outputLabel id="countryId" value="#{userAgentBranchBean.countryName}" />
+
+					<p:outputLabel for="stateId" value="#{labels.state}" />
+					<p:outputLabel id="stateId" value="#{userAgentBranchBean.stateName}" />
+
+					<p:outputLabel for="address" value="#{labels.address}" />
+					<p:outputLabel id="address" value="#{userAgentBranchBean.address}" />
+
+				</p:panelGrid>
+				<p:panelGrid styleClass="ui-noborder" columns="1">
+					<f:facet name="header">
+						<p:outputLabel value="#{labels.branchLocationHeader}" />
+					</f:facet>
+					<p:gmap id="gmap" center="#{userAgentBranchBean.locationLatitude}, #{userAgentBranchBean.locationLongitude}" zoom="12" type="ROADMAP"
+						style="width:400px;height:300px" model="#{userAgentBranchBean.branchMapModel}">
+					</p:gmap>
+				</p:panelGrid>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form>
+			<p:panelGrid  styleClass="ui-noborder" columns="2">
+				<p:outputLabel for="countryId" value="#{labels.countryId}" />
+					<p:inplace disabled="#{!countryBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<p:inputText id="countryId" value="#{countryBean.countryId}" required="true" />
+					</p:inplace>
+					<p:outputLabel for="countryName" value="#{labels.countryName}" />
+					<p:inplace disabled="#{!countryBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<p:inputText id="countryName" value="#{countryBean.countryName}" required="true" />
+					</p:inplace>
+					<p:outputLabel for="currency" value="#{labels.currency}" />
+					<p:inplace disabled="#{!countryBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						 <f:facet name="output">
+			                <p:outputLabel value="#{countryBean.currencyName}"/>
+			            </f:facet>
+			            <f:facet name="input">
+							<p:selectOneMenu id="currency" value="#{countryBean.currencyId}" required="true">
+								<f:selectItem itemLabel="Select One" itemValue="" />
+								<f:selectItems value="#{countryBean.currenciesList}" var="currency" itemLabel="#{currency.get('currencyName')}"
+									itemValue="#{currency.get('currencyId')}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:inplace>
+					<p:commandButton value="#{labels.update}" action="#{countryBean.updateCountry()}" rendered="#{countryBean.updateEnabled}"/>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

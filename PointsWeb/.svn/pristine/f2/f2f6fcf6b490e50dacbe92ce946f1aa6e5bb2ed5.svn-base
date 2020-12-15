@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp">
+
+
+<f:loadBundle basename="resources.application" var="labels" />
+<ui:composition template="/resources/templates/common/layout.xhtml">
+	<ui:define name="content_center">
+		<h:form id="form">
+			<p:panelGrid styleClass="ui-noborder">
+				<p:row>
+					<p:column>
+						<p:chart type="metergauge" model="#{userHomeBean.pointsGaugeModel}" style="width:400px;height:300px" />
+					</p:column>
+					<p:column>
+						<p:dataGrid id="products" var="tableDataRow" value="#{userHomeBean.productsList}" rows="5" columns="3" layout="grid" paginator="true"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15" style="margin-bottom:20px">
+
+							<f:facet name="header">      #{labels.product}    </f:facet>
+
+							<p:panel style="text-align:center">
+								<p:panelGrid  styleClass="ui-noborder" columns="1" style="width:100%">
+									<h:graphicImage url="#{'data:image/jpeg;charset=utf-8;base64, '}#{tableDataRow.get(entityConstantsBean.product.photo)}" width="75px"
+										height="75px" alt="photo not found" />
+									<h:outputText value="#{tableDataRow.get(entityConstantsBean.product.productName)}" />
+
+									<p:commandLink ajax="true" actionListener="#{userAgentProductBean.viewDetails(tableDataRow)}" icon="ui-icon-search"
+										title="#{labels.viewDetails}">
+										<p:graphicImage alt="xls" name="images/icon/view_details.png" width="24" />
+									</p:commandLink>
+								</p:panelGrid>
+							</p:panel>
+
+						</p:dataGrid>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2">
+						<p:dataGrid id="promptions" var="tableDataRow" value="#{userHomeBean.promotionsList}" rows="5" columns="2" layout="grid" paginator="true"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15" style="margin-bottom:20px">
+
+							<f:facet name="header">      #{labels.promotions}    </f:facet>
+
+							<p:panel style="text-align:center">
+								<p:panelGrid  styleClass="ui-noborder" columns="1" style="width:100%">
+									<h:graphicImage url="#{'data:image/jpeg;charset=utf-8;base64, '}#{tableDataRow.get(entityConstantsBean.promotion.image)}" width="150px"
+										height="150px" alt="photo not found" />
+									<h:outputText value="#{tableDataRow.get(entityConstantsBean.promotion.message)}" />
+
+									<p:commandLink ajax="true" actionListener="#{userAgentPromotionBean.viewDetails(tableDataRow)}" icon="ui-icon-search"
+										title="#{labels.viewDetails}">
+										<p:graphicImage alt="xls" name="images/icon/view_details.png" width="24" />
+									</p:commandLink>
+								</p:panelGrid>
+							</p:panel>
+
+						</p:dataGrid>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2">
+						<p:dataTable id="pending_purchases" rowIndexVar="row_index" var="tableDataRow" value="#{userHomeBean.purchasesList}"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15" paginator="true"
+							rows="5" style="margin-bottom:20px" rowStyleClass="#{userHomeBean.getRowStyleClass(tableDataRow)}" resizableColumns="true">
+							<p:column width="10">
+								<h:outputText value="#{row_index + 1}" />
+							</p:column>
+							<ui:insert name="more_pre_columns" />
+							<p:columns value="#{userHomeBean.purchaseColumns}" var="column"
+								sortBy="#{column.linkableProperty==null?tableDataRow.get(column.property):tableDataRow.get(column.property).get(column.linkableProperty)}"
+								sortMode="multiple">
+								<f:facet name="header">#{column.linkableProperty==null?labels.get(column.property):labels.get(column.linkableProperty)}</f:facet>
+								<h:outputText value="#{tableDataRow.get(column.property)}" rendered="#{column.linkableProperty==null}" />
+								<p:commandLink rendered="#{column.linkableProperty!=null}" actionListener="#{userHomeBean.viewDetails(tableDataRow,column.linkableProperty)}"
+									ajax="true">
+									<h:outputText value="#{tableDataRow.get(column.property).get(column.linkableProperty)}" />
+								</p:commandLink>
+								<p:commandLink rendered="#{column.linkableList!=null}" action="#{userHomeBean.viewListDetails(tableDataRow,column.linkableList)}" ajax="true">
+									<h:outputText value="#{labels.get(column.property)}" />
+								</p:commandLink>
+							</p:columns>
+							<ui:insert name="more_post_columns" />
+							<p:column style="width:70px;text-align: center">
+								<p:commandLink ajax="true" actionListener="#{userHomeBean.viewDetails(tableDataRow,'purchase')}" icon="ui-icon-search" title="#{labels.viewDetails}"
+									>
+									<p:graphicImage alt="xls" name="images/icon/view_details.png" width="24" />
+								</p:commandLink>
+							</p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>
+

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+		<ui:define name="content_center">
+			<h:form>
+				<p:panelGrid  styleClass="ui-noborder" columns="2">
+					<p:outputLabel value="#{labels.receiptNumber}" />
+					<p:outputLabel value="#{userPurchaseBean.purchaseId}" />
+					<p:outputLabel value="#{labels.userFullName}" />
+					<p:outputLabel value="#{userPurchaseBean.profileFullName}" />
+					<p:outputLabel value="#{labels.agent}" /> 
+					<p:outputLabel value="#{userPurchaseBean.tradeMark}" />
+					<p:outputLabel value="#{labels.branch}" />
+					<p:outputLabel value="#{userPurchaseBean.branchName}" />
+					<p:outputLabel value="#{labels.agentInvoiceNumber}" />
+					<p:outputLabel value="#{userPurchaseBean.agentInvoiceNumber}" />
+					<p:outputLabel value="#{labels.invoiceValue}" />
+					<p:outputLabel value="#{userPurchaseBean.agentInvoiceValue}" />
+					<p:outputLabel value="#{labels.pointsValue}" />
+					<p:outputLabel value="#{userPurchaseBean.pointsValue}" />
+			<p:commandButton value="${labels.confirm}" actionListener="#{userPurchaseBean.confirm}" icon="ui-icon-check" style="display:block;margin-bottom: 20px"/>
+			<p:commandButton value="${labels.reject}" actionListener="#{userPurchaseBean.reject}" icon="ui-icon-closethick" style="display:block;margin-bottom: 20px"/>
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</html>

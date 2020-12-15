@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h:form>
+		<p:panelGrid  styleClass="ui-noborder" columns="2" cellpadding="5">
+			<p:outputLabel for="currencyName" value="#{labels.currencyName}"/>
+			<p:inputText id="currencyName" value="#{currencyBean.currencyName}" required="true"/>
+			<p:outputLabel for="currencySign" value="#{labels.currencySign}"/>
+			<p:inputText id="currencySign" value="#{currencyBean.currencySign}" required="true"/>
+			<p:outputLabel for="pointsValue" value="#{labels.pointsValue}"/>
+			<p:inputText id="pointsValue" value="#{currencyBean.pointsValue}" required="true"/>
+			<p:outputLabel for="valueEgp" value="#{labels.valueEgp}"/>
+			<p:inputText id="valueEgp" value="#{currencyBean.valueEgp}" required="true"/>
+			<p:commandButton value="#{labels.add}" action="#{currencyBean.addCurrency()}"/>
+		</p:panelGrid>
+	</h:form>
+</html>

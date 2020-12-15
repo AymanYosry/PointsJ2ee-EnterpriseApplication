@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form enctype="multipart/form-data">
+			<p:panelGrid  styleClass="ui-noborder" columns="2" cellpadding="5">
+				<p:outputLabel for="productName" value="#{labels.productName}" />
+				<p:inplace disabled="#{!agentAdminAgentProductBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<p:inputText id="productName" value="#{agentAdminAgentProductBean.productName}" required="true" />
+				</p:inplace>
+				<p:outputLabel for="productPrice" value="#{labels.productPrice}" />
+				<p:inplace disabled="#{!agentAdminAgentProductBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<p:inputText id="productPrice" value="#{agentAdminAgentProductBean.price}" required="true" />
+				</p:inplace>
+				<p:outputLabel for="validityDate" value="#{labels.validityDate}" />
+				<p:inplace disabled="#{!agentAdminAgentProductBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<f:facet name="output">
+						<p:outputLabel value="#{agentAdminAgentProductBean.validityDateStr}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:calendar id="validityDate" value="#{agentAdminAgentProductBean.validityDate}" required="true" pattern="#{entityConstantsBean.dateFormat}" />
+					</f:facet>
+				</p:inplace>
+				<p:outputLabel for="currency" value="#{labels.currency}" />
+				<p:inplace disabled="#{!agentAdminAgentProductBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<f:facet name="output">
+						<p:outputLabel value="#{agentAdminAgentProductBean.currencyName}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:selectOneMenu id="currency" value="#{agentAdminAgentProductBean.currencyId}">
+							<f:selectItem itemLabel="Select One" itemValue="" />
+							<f:selectItems value="#{agentAdminAgentProductBean.currenciesList}" var="currency"
+								itemLabel="#{currency.get(entityConstantsBean.currency.currencyName)}" itemValue="#{currency.get(entityConstantsBean.currency.currencyId)}" />
+						</p:selectOneMenu>
+					</f:facet>
+				</p:inplace>
+				<!-- 				<p:outputLabel for="country" value="#{labels.country}" />
+				<p:inplace disabled="#{!agentAdminAgentProductBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<f:facet name="output">
+						<p:outputLabel value="#{agentAdminAgentProductBean.countryName}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:selectOneMenu id="country" value="#{agentAdminAgentProductBean.countryId}">
+							<f:selectItem itemLabel="Select One" itemValue="" />
+							<f:selectItems value="#{agentAdminAgentProductBean.countriesList}" var="country"
+								itemLabel="#{country.get(entityConstantsBean.country.countryName)}" itemValue="#{country.get(entityConstantsBean.country.countryId)}" />
+						</p:selectOneMenu>
+					</f:facet>
+				</p:inplace> -->
+				<p:panelGrid  styleClass="ui-noborder">
+					<h:graphicImage url="#{'data:image/jpeg;charset=utf-8;base64, '}#{agentAdminAgentProductBean.photo}" width="100px" height="100px"
+						alt="photo not found" />
+				</p:panelGrid>
+				<p:inplace rendered="#{agentAdminAgentProductBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}" label="#{labels.clickToEdit} #{labels.photo}">
+					<p:fileUpload id="photo" label="#{labels.photo}" value="#{agentAdminAgentProductBean.uploadedPhoto}" mode="simple" skinSimple="true"
+						update="growl" required="true" />
+				</p:inplace>
+				<p:commandButton value="#{labels.update}" action="#{agentAdminAgentProductBean.updateAgentProduct()}" ajax="false"
+					rendered="#{agentAdminAgentProductBean.updateEnabled}" />
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

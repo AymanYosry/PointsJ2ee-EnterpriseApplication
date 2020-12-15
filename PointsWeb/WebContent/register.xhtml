@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jstl/core">
+<f:loadBundle basename="resources.application" var="labels" />
+<h:head>
+	<title><h:outputText value="#{labels.registerTitle}" /></title>
+	<h:outputScript library="js" name="SHA512.js" />
+	<script src="resources/js/register.js" />
+</h:head>
+
+<h:body id="register_body">
+
+	<h:form id="rf" onsubmit="validateData()">
+		<p:panelGrid columns="2" styleClass="ui-noborder">
+			<p:outputLabel for="firstname" value="#{labels.firstName}" />
+			<p:inputText id="firstname" value="#{userProfileBean.firstName}" required="true" label="firstname" />
+			<p:outputLabel for="lastname" value="#{labels.lastName}" />
+			<p:inputText id="lastname" value="#{userProfileBean.lastName}" required="true" label="lastname" />
+			<p:outputLabel for="user" value="#{labels.mobile}" />
+			<p:inputText id="user" value="#{userProfileBean.mobile}" required="true" label="user" />
+			<p:outputLabel for="confirmmobile" value="#{labels.confirmMobile}" />
+			<p:inputText id="confirmmobile" required="true" label="confirmmobile" />
+			<p:commandButton type="submit" value="#{labels.registerBtn}" action="#{userProfileBean.register()}" />
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>

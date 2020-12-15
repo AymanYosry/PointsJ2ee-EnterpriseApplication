@@ -1,0 +1,24 @@
+1471085434134	Copy compilation units
+1471085479855	Rename type 'CMSDataSigner'
+1471085493642	Rename type 'CMSDataVerifier'
+1471085551337	Rename type 'CMSDecryption'
+1471085577971	Rename type 'CMSKeyGenerator'
+1471085621064	Rename type 'CMSEncryption'
+1471086767506	Delete elements
+1471086847968	Copy compilation unit
+1471086899881	Rename type 'SecurityAlgFactory'
+1471087353711	Rename type 'SecurityAlgorithFactory'
+1471087412101	Copy compilation unit
+1471087442616	Delete element
+1471087457255	Rename type 'SecurityFactory'
+1471088891922	Delete elements
+1471088934531	Delete element
+1471088976590	Delete element
+1471092042772	Rename type 'SecurityUtil'
+1471092419419	Rename type 'RSASecurityFactor'
+1471092576715	Rename type 'CMSDataSigner'
+1471092591702	Rename type 'CMSDataVerifier'
+1471092616254	Rename type 'CMSDecryption'
+1471092637264	Rename type 'CMSEncryption'
+1471092658128	Rename type 'CMSKeyGenerator'
+1471098360652	Delete elements

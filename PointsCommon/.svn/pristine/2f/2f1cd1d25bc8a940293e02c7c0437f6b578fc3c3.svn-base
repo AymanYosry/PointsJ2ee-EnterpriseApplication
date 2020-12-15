@@ -1,0 +1,58 @@
+/**
+ * 
+ */
+package com.ewhale.points.common.token;
+
+import java.security.SecureRandom;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.UUID;
+
+import com.ewhale.points.common.exception.AuthenticationSecurityException;
+import com.ewhale.points.common.security.SecurityUtil;
+
+/**
+ * @author Ayman Yosry
+ */
+public class TokenGenerator
+{
+	/**
+	 * @param tokenCredList
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public String generate(List<String> tokenCredList) throws AuthenticationSecurityException
+	{
+		Calendar calendar = new GregorianCalendar();
+		SecureRandom random = SecurityUtil.createRandom();
+		String tokenCred = "";
+		for (Object input : tokenCredList)
+		{
+			tokenCred += input + ".";
+		}
+
+		String token = UUID.randomUUID().toString().toUpperCase() + "|" + random.nextLong() + "|" + tokenCred + "|" + calendar.getTimeInMillis();
+		token = SecurityUtil.toHex(SecurityUtil.hashSHA256(SecurityUtil.encrypt(token)));
+
+		return token;
+	}
+
+	public static void main(String arg[])
+	{
+		List<String> testList = Arrays.asList(new String[]
+			{ "ayman", "yosry" });
+
+		TokenGenerator tokenGen = new TokenGenerator();
+		try
+		{
+			tokenGen.generate(testList);
+		}
+		catch (AuthenticationSecurityException e)
+		{
+			e.printStackTrace();
+		}
+
+	}
+}

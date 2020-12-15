@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form>
+			<p:panelGrid  styleClass="ui-noborder" columns="2">
+				<p:panelGrid  styleClass="ui-noborder" columns="2" cellpadding="5">
+					<p:outputLabel value="#{labels.branchName}" />
+					<p:outputLabel value="#{agentSellerBranchBean.branchName}" />
+
+					<p:outputLabel value="#{labels.branchTel}" />
+					<p:outputLabel value="#{agentSellerBranchBean.tel}" />
+
+					<p:outputLabel value="#{labels.country}" />
+					<p:outputLabel value="#{agentSellerBranchBean.countryName}" />
+
+					<p:outputLabel value="#{labels.state}" />
+					<p:outputLabel value="#{agentSellerBranchBean.stateName}" />
+
+					<p:outputLabel value="#{labels.address}" />
+					<p:outputLabel value="#{agentSellerBranchBean.address}" />
+
+				</p:panelGrid>
+				<p:panelGrid styleClass="ui-noborder" columns="1">
+					<f:facet name="header">
+						<p:outputLabel value="#{labels.branchLocationHeader}" />
+					</f:facet>
+					<p:gmap id="gmap_not" center="#{agentSellerBranchBean.locationLatitude},#{agentSellerBranchBean.locationLongitude}" zoom="14" type="ROADMAP"
+						style="width:400px;height:250px" model="#{agentSellerBranchBean.branchMapModel}">
+					</p:gmap>
+				</p:panelGrid>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

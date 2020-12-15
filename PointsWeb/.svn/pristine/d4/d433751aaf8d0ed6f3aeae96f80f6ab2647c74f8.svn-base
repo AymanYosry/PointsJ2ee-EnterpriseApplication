@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp">
+
+
+
+<ui:composition template="/resources/templates/common/layout.xhtml">
+	<ui:define name="content_header">
+		<h:form>
+			<p:panelGrid columns="6" styleClass="ui-noborder"  rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentSellerRoleId}">
+				<p:outputLabel for="branch" value="#{labels.branch}"/>
+				<p:selectOneMenu id="branch" value="#{agentSellerHomeBean.branchId}">
+					<f:selectItem itemLabel="#{labels.selectOne}" itemValue="" />
+					<f:selectItems value="#{agentSellerHomeBean.branchesList}" var="branch" itemLabel="#{branch.get(entityConstantsBean.branch.branchName)}"
+						itemValue="#{branch.get(entityConstantsBean.branch.branchId)}" />
+					<p:ajax event="change" update="@all" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>
+

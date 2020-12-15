@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package com.ewhale.points.common.security;
+
+/**
+ * @author Ayman Yosry
+ */
+// public class SecurityFactory extends CMSSecurityFactory
+// public class SecurityFactory extends RSASecurityFactory
+public class SecurityFactory extends RSASecurityFactory
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+}

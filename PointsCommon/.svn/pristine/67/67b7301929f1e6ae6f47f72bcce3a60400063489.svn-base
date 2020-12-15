@@ -1,0 +1,44 @@
+/**
+ * 
+ */
+package com.ewhale.points.common.security;
+
+import com.ewhale.points.common.exception.AuthenticationSecurityException;
+
+/**
+ * @author Ayman Yosry
+ * @updated Ahmed Khalil
+ */
+// public class SecurityFactory extends CMSAndroidSecurityBuilder
+// public class SecurityFactory extends RSASecurityBuilder
+public class SecurityFactory
+{
+	private static SecurityBuilder securityBuilder = null;
+
+	public static final byte CMS_ANDROID_SECURITY_BUILDER = 1;
+
+	public static final byte CMS_SECURITY_BUILDER = 2;
+
+	public static final byte RSA_SECURITY_BUILDER = 3;
+
+	public static SecurityBuilder getSecurityBuilder(byte securityBuilderType) throws AuthenticationSecurityException
+	{
+		if (securityBuilder != null)
+			return securityBuilder;
+		switch (securityBuilderType)
+		{
+			case CMS_ANDROID_SECURITY_BUILDER:
+				securityBuilder = new CMSAndroidSecurityBuilder();
+				break;
+			case CMS_SECURITY_BUILDER:
+				securityBuilder = new CMSSecurityBuilder();
+				break;
+			case RSA_SECURITY_BUILDER:
+				securityBuilder = new RSASecurityBuilder();
+				break;
+			default:
+				break;
+		}
+		return securityBuilder;
+	}
+}

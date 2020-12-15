@@ -1,0 +1,69 @@
+/**
+ * 
+ */
+package com.ewhale.points.ws.interceptors;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import javax.annotation.Priority;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.ext.Provider;
+import javax.ws.rs.ext.WriterInterceptor;
+import javax.ws.rs.ext.WriterInterceptorContext;
+
+import org.jboss.resteasy.logging.Logger;
+
+import com.ewhale.points.common.exception.AuthenticationSecurityException;
+import com.ewhale.points.common.security.SecurityUtil;
+import com.ewhale.points.common.util.AppConstants;
+
+/**
+ * @author Ayman Yosry
+ * @updated Ahmad Khalil
+ */
+@Provider
+@Priority(value = 1)
+public class ServiceClientDigitalSignaturePreInterceptor implements WriterInterceptor
+{
+	protected Logger LOG = Logger.getLogger(ServiceClientDigitalSignaturePreInterceptor.class);
+
+	public ServiceClientDigitalSignaturePreInterceptor()
+	{
+	}
+
+	@Override
+	public void aroundWriteTo(WriterInterceptorContext writerInterceptorContext) throws WebApplicationException, IOException
+	{
+		OutputStream old = null;
+		try
+		{
+			String signature = null;
+
+			old = writerInterceptorContext.getOutputStream();
+
+			// store body in a byte array so we can use it to calculate signature
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			writerInterceptorContext.setOutputStream(baos);
+			writerInterceptorContext.proceed();
+			byte[] body = baos.toByteArray();
+			String dataToBeSigned = new String(body);
+			// sign
+			signature = SecurityUtil.sign(dataToBeSigned);
+			// signature = rsaSign.sign(body);
+			writerInterceptorContext.getHeaders().putSingle(AppConstants.SecurityConstants.SIGNATURE, signature);
+			old.write(body);
+
+		}
+		catch (AuthenticationSecurityException e)
+		{
+			LOG.error("Error In Signing Client Sigining Intercepto", e);
+			throw new WebApplicationException("Error In Signing Client Sigining Intercepto", e, e.getStatusCode());
+		}
+		finally
+		{
+			writerInterceptorContext.setOutputStream(old);
+		}
+	}
+}

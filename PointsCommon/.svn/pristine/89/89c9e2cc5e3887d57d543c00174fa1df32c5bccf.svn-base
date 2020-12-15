@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package com.ewhale.points.common.stores;
+
+import java.security.KeyStore;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * @author Ayman Yosry
+ *
+ */
+public interface SecurityKeyStore
+{
+	public static final Map<String, KeyStore> KeyMap = new ConcurrentHashMap<>();
+}

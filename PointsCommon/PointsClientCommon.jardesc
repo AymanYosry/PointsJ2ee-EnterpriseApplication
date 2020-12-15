@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="jars/points_jars/PointsCommon.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/PointsCommon/PointsClientCommon.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=PointsCommon/src&lt;com.ewhale.points.common.exception.mappers"/>
+        <javaElement handleIdentifier="=PointsCommon/src&lt;com.ewhale.points.common.security"/>
+        <javaElement handleIdentifier="=PointsCommon/src&lt;com.ewhale.points.common.exception"/>
+        <javaElement handleIdentifier="=PointsCommon/src&lt;com.ewhale.points.common.security.keystore"/>
+        <javaElement handleIdentifier="=PointsCommon/src&lt;com.ewhale.points.common.util"/>
+    </selectedElements>
+</jardesc>

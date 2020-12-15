@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+
+	<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+		<ui:define name="content_center">
+			<h:form>
+					<p:panelGrid  styleClass="ui-noborder" columns="2">
+						<p:outputLabel for="currencyName" value="#{labels.currencyName}" />
+						<p:inplace disabled="#{!currencyBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+							<p:inputText id="currencyName" value="#{currencyBean.currencyName}" required="true" />
+						</p:inplace>
+						<p:outputLabel for="currencySign" value="#{labels.currencySign}"/>
+						<p:inplace disabled="#{!currencyBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+							<p:inputText id="currencySign" value="#{currencyBean.currencySign}" required="true" />
+						</p:inplace>
+						<p:outputLabel for="pointsValue" value="#{labels.pointsValue}"/>
+						<p:inplace disabled="#{!currencyBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+							<p:inputText id="pointsValue" value="#{currencyBean.pointsValue}" required="true" />
+						</p:inplace>
+						<p:outputLabel for="valueEgp" value="#{labels.valueEgp}"/>
+						<p:inplace disabled="#{!currencyBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+							<p:inputText id="valueEgp" value="#{currencyBean.valueEgp}" required="true" />
+						</p:inplace>
+						<p:commandButton value="#{labels.update}" action="#{currencyBean.updateCurrency()}" rendered="#{currencyBean.updateEnabled}"/>
+					</p:panelGrid>
+				</h:form>
+		</ui:define>
+	</ui:composition>
+
+
+
+</html>

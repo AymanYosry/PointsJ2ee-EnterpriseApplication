@@ -1,0 +1,61 @@
+/**  * 
+ */
+package com.ewhale.points.common.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author ayosry
+ *
+ */
+public class TestClass
+{
+
+	/**
+	 * 
+	 */
+	public TestClass()
+	{
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		TestClass ts = new TestClass();
+		
+		int A[]={4,2,-1,-2,-2,10};
+		System.out.println(sol(A));
+		
+		
+	}
+
+	public static int sol (int A[])
+	{
+		int L,R;
+
+		L= A[0];
+		R=sum(A);
+		
+		for(int i=1;i<A.length-1;i++)
+		{
+			R -= (L + A[i]);
+			System.out.println(L + "  "+R);
+
+			if(R == L) return i;
+			L += A[i];
+		}
+		return -1;
+	}
+	private static int sum(int[] a)
+	{
+		int sum = 0;
+		for(int i=0;i<a.length;i++) sum += a[i];
+		return sum;
+	}
+
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp">
+
+
+
+<ui:composition template="/resources/templates/common/layout.xhtml">
+	<ui:define name="add_new_panel">
+		<ui:include src="contract_add.xhtml" />
+	</ui:define>
+
+
+	<ui:define name="search_panel">
+		<p:panelGrid columns="6" styleClass="ui-noborder">
+
+			<p:outputLabel for="startContractDateFrom" value="#{labels.from} #{labels.contractDate}" />
+			<p:calendar id="startContractDateFrom" value="#{sysAdminAgentContractBean.startDateFromSearch}" pattern="#{entityConstantsBean.dateFormat}" />
+			<p:outputLabel for="startContractDateTo" value="#{labels.to} #{labels.contractDate}" />
+			<p:calendar id="startContractDateTo" value="#{sysAdminAgentContractBean.startDateToSearch}" pattern="#{entityConstantsBean.dateFormat}" />
+
+			<p:outputLabel for="country" value="#{labels.country}" />
+			<p:selectOneMenu id="country" value="#{sysAdminAgentContractBean.countryId}">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItems value="#{sysAdminAgentContractBean.countriesList}" var="country"
+					itemLabel="#{country.get(entityConstantsBean.country.countryName)}" itemValue="#{country.get(entityConstantsBean.country.countryId)}" />
+			</p:selectOneMenu>
+
+			<p:outputLabel for="endContractDateFrom" value="#{labels.from} #{labels.endContractDate}" />
+			<p:calendar id="endContractDateFrom" value="#{sysAdminAgentContractBean.endDateFromSearch}" pattern="dd-MM-yyyy" />
+			<p:outputLabel for="endContractDateTo" value="#{labels.to} #{labels.endContractDate}" />
+			<p:calendar id="endContractDateTo" value="#{sysAdminAgentContractBean.endDateToSearch}" pattern="dd-MM-yyyy" />
+
+
+
+
+			<p:outputLabel for="agent" value="#{labels.agent}" />
+			<p:selectOneMenu id="agent" value="#{sysAdminAgentContractBean.agentIdSearch}">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItems value="#{sysAdminAgentContractBean.agentsList}" var="agent" itemLabel="#{agent.get(entityConstantsBean.agent.tradeMark)}"
+					itemValue="#{agent.get(entityConstantsBean.agent.agentId)}" />
+			</p:selectOneMenu>
+
+			<p:commandButton value="#{labels.search}" id="search" update="growl search_table" actionListener="#{sysAdminAgentContractBean.getAgentContracts()}" />
+		</p:panelGrid>
+
+	</ui:define>
+	<ui:define name="content_center">
+		<em:search_component table_bean="#{sysAdminAgentContractBean}"></em:search_component>
+	</ui:define>
+
+</ui:composition>
+
+</html>
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<ui:composition template="/resources/templates/common/layout_agent_seller.xhtml">
+	<ui:define name="content_center">
+
+		<p:messages id="messages" />
+		<p:panelGrid styleClass="ui-noborder" id="refund_data" columns="2">
+			<h:form id="refund_form">
+				<p:panelGrid styleClass="ui-noborder" id="refund_panel" columns="2"  style="width:335px;">
+					<p:outputLabel for="invoiceNumber" value="#{labels.agentInvoiceNumber}" />
+					<p:inputText id="invoiceNumber" value="#{agentSellerPurchaseBean.agentInvoiceNumber}" required="true" />
+					<p:outputLabel for="invoiceValue" value="#{labels.agentInvoiceValue}" />
+					<p:inputText id="invoiceValue" value="#{agentSellerPurchaseBean.agentInvoiceValue}" required="true" />
+					<p:outputLabel for="mobile" value="#{labels.mobile}" />
+					<p:inputText id="mobile" value="#{agentSellerPurchaseBean.mobile}" required="true" immediate="true"
+						valueChangeListener="#{agentSellerPurchaseBean.mobileChanged}">
+					</p:inputText>
+					<p:commandButton value="#{labels.add}" action="#{agentSellerPurchaseBean.refundUserPurchase()}" disabled="#{agentSellerHomeBean.branchId==null}"
+						update="refund_data" />
+					<p:commandButton value="#{labels.searchUserPurchases}" action="#{agentSellerPurchaseBean.getUserPurchasesList()}" immediate="true"
+						update="refund_data" disabled="#{agentSellerHomeBean.branchId==null}" />
+				</p:panelGrid>
+			</h:form>
+			<h:form>
+				<p:dataTable rowIndexVar="row_index" id="purchases" var="tableDataRow" value="#{agentSellerPurchaseBean.tableData}"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" paginator="true" rows="10"
+					style="margin-bottom:20px" rowStyleClass="#{agentSellerPurchaseBean.getRowStyleClass(tableDataRow)}">
+					<p:column width="10">
+						<h:outputText value="#{row_index + 1}" />
+					</p:column>
+					<p:column style="width:45px;text-align: center">
+						<p:commandLink value="#{labels.refund}" actionListener="#{agentSellerPurchaseBean.setRefundData(tableDataRow)}" ajax="true" update="refund_data"
+							immediate="true" disabled="#{agentSellerHomeBean.branchId==null}" rendered="#{tableDataRow.get(entityConstantsBean.purchase.fund)}" />
+					</p:column>
+					<p:columns value="#{agentSellerPurchaseBean.columns}" var="column" sortBy="#{tableDataRow.get(column.property)}" sortMode="multiple">
+						<f:facet name="header">#{column.linkableProperty==null?labels.get(column.property):labels.get(column.linkableProperty)}</f:facet>
+						<h:outputText value="#{tableDataRow.get(column.property)}" rendered="#{column.linkableProperty==null}" />
+						<p:commandLink rendered="#{column.linkableProperty!=null}"
+							actionListener="#{agentSellerPurchaseBean.viewDetails(tableDataRow,column.linkableProperty)}" ajax="true">
+							<h:outputText value="#{tableDataRow.get(column.property).get(column.linkableProperty)}" />
+						</p:commandLink>
+						<p:commandLink rendered="#{column.linkableList!=null}" action="#{agentSellerPurchaseBean.viewListDetails(tableDataRow,column.linkableList)}"
+							ajax="true">
+							<h:outputText value="#{labels.get(column.property)}" />
+						</p:commandLink>
+					</p:columns>
+				</p:dataTable>
+			</h:form>
+		</p:panelGrid>
+	</ui:define>
+</ui:composition>
+</html>

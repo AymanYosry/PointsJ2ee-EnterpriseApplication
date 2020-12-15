@@ -1,0 +1,96 @@
+package com.ewhale.points.ws.filter;
+
+import java.io.IOException;
+
+import javax.servlet.DispatcherType;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+
+import com.ewhale.points.common.util.AppConstants;
+
+/**
+ * Servlet Filter implementation class ServiceFilter
+ */
+@WebFilter(dispatcherTypes =
+	{ DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE, DispatcherType.ERROR }, urlPatterns =
+	{ "/*" })
+public class ServiceFilter implements Filter
+{
+
+	/**
+	 * Default constructor.
+	 */
+	public ServiceFilter()
+	{
+		// //LOG.debug("########################## FILTER: "+this.getClass().getSimpleName() + " CONSTRUCTED\n");
+	}
+
+	/**
+	 * @see Filter#destroy()
+	 */
+	public void destroy()
+	{
+		// //LOG.debug("########################## FILTER: "+this.getClass().getSimpleName() + " DESTROYED\n");
+	}
+
+	/**
+	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 */
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
+	{
+		HttpServletRequest req = (HttpServletRequest) request;
+		req.getSession().setAttribute("testvar", "POINTS");
+		// //LOG.debug("########################## FILTER: "+this.getClass().getSimpleName()+" PROCESSING\n");
+
+		// Get the IP address of client machine.
+		// String ipAddress = req.getRemoteAddr();
+		// String qs = req.getQueryString();
+
+		String path = req.getRequestURI();
+		// String userToken = req.getParameter(AppConstants.TOKEN_VAR_NAME);
+		// request.s
+		// Log the IP address and current timestamp.
+		// //LOG.debug("##########################\n IP = "+ipAddress + ", Time = " + new Date().toString());
+		// //LOG.debug("########################## Query String ##########################\n "+qs );
+		// //LOG.debug("########################## Servlet Path ##########################\n "+path );
+		// //LOG.debug("########################## Context Path ##########################\n "+req.getContextPath() );
+		// //LOG.debug("########################## Path Info ##########################\n "+req.getPathInfo());
+		// //LOG.debug("########################## Path Translated #######################\n "+req.getPathTranslated());
+
+		if (path.indexOf(AppConstants.LOGIN_SERVICE) < 0)
+		{
+			// if(!validateUserToken(userToken)) res.sendRedirect(AppConstants.ERROR_PAGE);
+		}
+		else
+		{
+			// LOG.debug("########################## LOGIN SERVICE ##########################\n");
+		}
+
+		// pass the request along the filter chain
+		chain.doFilter(request, response);
+	}
+
+	// private boolean validateUserToken(String userToken)
+	// {
+	// boolean status = false;
+	// // Next Line should be replaced with token value retrived from DB to validate with given user token
+	// //status = (UserMap.getVal(userToken)==null)? false : true;
+	//
+	// return status;
+	// }
+
+	/**
+	 * @see Filter#init(FilterConfig)
+	 */
+	public void init(FilterConfig fConfig) throws ServletException
+	{
+		// //LOG.debug("########################## FILTER: "+this.getClass().getSimpleName() + " INTIALIZED\n");
+	}
+
+}

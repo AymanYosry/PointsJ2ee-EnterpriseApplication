@@ -1,0 +1,9 @@
+## Exception Messages
+INVALID_USER_CREDENTIONALS_EX_MSG=Wrong Mobile No or password
+IMAGE_REQUIRED=Image is required
+LARGE_IMAGE_MAX_65K=Image Should not be more than 65KB
+DUBLICATE_DATA_EX_MSG=Some Data is already used!!
+INVALID_SESSION_EX_MSG=Session is Expired .. Please re-login.
+USER_ALREADY_EXISTS_EX_MSG=Mobile Already Registered ..
+UNAUTHENTCATED_USER_CREDENTIONALS_EX_MSG=Unauthenticated User ..
+BLOCKED_USER_CREDENTIONALS_EX_MSG=Sorry This Account Is Blocked

@@ -1,0 +1,110 @@
+package com.ewhale.points.web.managedbean.main;
+
+import java.io.Serializable;
+import java.util.Map;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+
+import com.ewhale.points.common.util.EntityConstants;
+
+@SessionScoped
+@ManagedBean
+//IMP_Ahmed this class should be deleted
+//IMP_Ahmed this class should be deleted
+//IMP_Ahmed this class should be deleted
+//IMP_Ahmed this class should be deleted
+//IMP_Ahmed this class should be deleted
+public class TempLoginBean implements Serializable
+{
+
+
+	public String setLoginToAgentAdmin()
+	{
+		setLogin(EntityConstants.Role.Fixed.agentAdminRole.ID);
+		return "/pages/agent/admin/index.xhtml";
+	}
+
+	public String setLoginToAgentSeller()
+	{
+		setLogin(EntityConstants.Role.Fixed.agentSellerRole.ID);
+		return "/pages/agent/seller/index.xhtml";
+	}
+
+	public String setLoginToSystemAdmin()
+	{
+		setLogin(EntityConstants.Role.Fixed.systemAdminRole.ID);
+		return "/pages/system/admin/index.xhtml";
+	}
+
+	public String setLoginToSystemSales()
+	{
+		setLogin(EntityConstants.Role.Fixed.systemSalesRole.ID);
+		return "/pages/system/sales/index.xhtml";
+	}
+
+	public String setLoginToUser()
+	{
+		setLogin(EntityConstants.Role.Fixed.userRole.ID);
+		return "/pages/user/index.xhtml";
+	}
+	private static RoleSwitcherBean getRoleSwitcherSessionBean()
+	{
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		Map<String, Object> sessionMap = externalContext.getSessionMap();
+		RoleSwitcherBean roleSwitcherBean=(RoleSwitcherBean) sessionMap.get("roleSwitcherBean");
+		return roleSwitcherBean;
+	}
+	private void setLogin(int roleId)
+	{
+//		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		Map<String, Object> loginData = FacesUtil.getLoginData();
+		if (roleId == EntityConstants.Role.Fixed.agentAdminRole.ID)
+		{
+//			loginData.put(EntityConstants.Login.agentId, new Long(6));
+			loginData.put(EntityConstants.Login.loginId, new Long(1));
+			loginData.put(EntityConstants.Login.branchId, null);
+			loginData.put(EntityConstants.Login.roleId, EntityConstants.Role.Fixed.agentAdminRole.ID);
+			RoleSwitcherBean roleSwitcherBean=getRoleSwitcherSessionBean();
+			roleSwitcherBean.setCurrentRoleId(EntityConstants.Role.Fixed.userRole.ID);
+		}
+		else if (roleId == EntityConstants.Role.Fixed.agentSellerRole.ID)
+		{
+//			loginData.put(EntityConstants.Login.agentId, new Long(6));
+			loginData.put(EntityConstants.Login.loginId, new Long(2));
+			loginData.put(EntityConstants.Login.branchId, null);
+			loginData.put(EntityConstants.Login.roleId, EntityConstants.Role.Fixed.agentSellerRole.ID);
+			RoleSwitcherBean roleSwitcherBean=getRoleSwitcherSessionBean();
+			roleSwitcherBean.setCurrentRoleId(EntityConstants.Role.Fixed.userRole.ID);
+		}
+		else if (roleId == EntityConstants.Role.Fixed.systemAdminRole.ID)
+		{
+			loginData.put(EntityConstants.Login.loginId, new Long(3));
+			loginData.put(EntityConstants.Login.branchId, null);
+//			loginData.put(EntityConstants.Login.agentId, null);
+			loginData.put(EntityConstants.Login.roleId, EntityConstants.Role.Fixed.systemAdminRole.ID);
+			RoleSwitcherBean roleSwitcherBean=getRoleSwitcherSessionBean();
+			roleSwitcherBean.setCurrentRoleId(EntityConstants.Role.Fixed.systemAdminRole.ID);
+		}
+		else if (roleId == EntityConstants.Role.Fixed.systemSalesRole.ID)
+		{
+			loginData.put(EntityConstants.Login.loginId, new Long(4));
+			loginData.put(EntityConstants.Login.branchId, null);
+//			loginData.put(EntityConstants.Login.agentId, null);
+			loginData.put(EntityConstants.Login.roleId, EntityConstants.Role.Fixed.systemSalesRole.ID);
+			RoleSwitcherBean roleSwitcherBean=getRoleSwitcherSessionBean();
+			roleSwitcherBean.setCurrentRoleId(EntityConstants.Role.Fixed.systemSalesRole.ID);
+		}
+		else if (roleId == EntityConstants.Role.Fixed.userRole.ID)
+		{
+			loginData.put(EntityConstants.Login.loginId, new Long(5));
+			loginData.put(EntityConstants.Login.branchId, null);
+//			loginData.put(EntityConstants.Login.agentId, null);
+			loginData.put(EntityConstants.Login.roleId, EntityConstants.Role.Fixed.userRole.ID);
+			RoleSwitcherBean roleSwitcherBean=getRoleSwitcherSessionBean();
+			roleSwitcherBean.setCurrentRoleId(EntityConstants.Role.Fixed.userRole.ID);
+		}
+	}
+}

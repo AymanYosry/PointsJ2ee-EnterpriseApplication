@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<classpath>
+  <source-attachment entry="C:/wildfly-9.0.2.Final/modules/system/layers/base/org/jboss/resteasy/resteasy-jaxrs/main/resteasy-jaxrs-3.0.11.Final.jar" runtime-id="WildFly 9.x Runtime" source-attachment-path="C:/Users/ayosry.ITSOFT/.m2/repository/org/jboss/resteasy/resteasy-jaxrs/3.0.11.Final/resteasy-jaxrs-3.0.11.Final-sources.jar"/>
+</classpath>

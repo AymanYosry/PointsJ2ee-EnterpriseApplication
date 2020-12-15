@@ -1,0 +1,83 @@
+/**
+ * 
+ */
+package com.ewhale.points.common.security;
+
+import java.io.Serializable;
+
+import com.ewhale.points.common.exception.AuthenticationSecurityException;
+import com.ewhale.points.common.security.rsa.DataDecryptor;
+import com.ewhale.points.common.security.rsa.DataEncryptor;
+import com.ewhale.points.common.security.rsa.DataSigner;
+import com.ewhale.points.common.security.rsa.DataVerifier;
+
+/**
+ * @author Ayman Yosry
+ *
+ */
+class RSASecurityBuilder extends SecurityBuilder implements Serializable
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	public RSASecurityBuilder()
+	{
+		System.out.println("INSIDE ==> "+this.getClass().getSimpleName());
+	}
+
+	/**
+	 * Sign Data
+	 * 
+	 * @param data
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public String sign(String data) throws AuthenticationSecurityException
+	{
+		DataSigner rsaSign = new DataSigner();
+		String signature = rsaSign.sign(data);
+		return signature;
+	}
+
+	/**
+	 * Verify Data
+	 * 
+	 * @param data
+	 * @param signature
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public boolean verify(String data, String signature) throws AuthenticationSecurityException
+	{
+		DataVerifier rsaVerify = new DataVerifier();
+		boolean isVerified = rsaVerify.verify(data, signature);
+		return isVerified;
+	}
+
+	/**
+	 * @param password
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public String encrypt(String password) throws AuthenticationSecurityException
+	{
+		DataEncryptor enc = new DataEncryptor();
+		password = toHex(hashSHA256(password));
+		String encryptedPassword = enc.encrypt(password);
+		return encryptedPassword;
+	}
+
+	/**
+	 * @param password
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public String decrypt(String password) throws AuthenticationSecurityException
+	{
+		DataDecryptor dec = new DataDecryptor();
+		String decryptedPassword = dec.decrypt(password);
+		return decryptedPassword;
+	}	
+}

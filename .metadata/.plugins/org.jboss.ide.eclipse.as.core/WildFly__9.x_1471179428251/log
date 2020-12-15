@@ -1,0 +1,479 @@
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-08-14 14:57:41.620
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-08-14 14:57:43.557
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-08-14 14:58:59.096
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-08-14 14:59:03.313
+!MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-08-15 09:12:42.324
+!MESSAGE Incremental publish failed for module PointsCommon
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-08-15 09:12:42.324
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\cms\android\CMSDecryption.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-08-15 09:12:42.324
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\cms\android\CMSEncryption.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-08-15 09:12:42.324
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\cms\android\CMSKeyGenerator.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-08-15 09:12:42.370
+!MESSAGE Incremental publish failed for module PointsService
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-08-15 09:12:42.370
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\PointsService.war\WEB-INF\classes\com\ewhale\points\ws\interceptors\annotations\namebinding\VerifyDigitaSignature.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-08-15 09:12:42.370
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\PointsService.war\WEB-INF\classes\com\ewhale\points\ws\interceptors\annotations\namebinding\VerifyToken.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-08-15 09:12:52.574
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-08-15 09:13:51.716
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-08-15 09:15:15.739
+!MESSAGE Incremental publish failed for module PointsCommon
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-08-15 09:15:15.739
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\cms\android\CMSDecryption.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-08-15 09:15:15.739
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\cms\android\CMSEncryption.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-08-15 09:15:15.739
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\cms\android\CMSKeyGenerator.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-08-15 09:15:15.796
+!MESSAGE Incremental publish failed for module PointsService
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-08-15 09:15:15.796
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\PointsService.war\WEB-INF\classes\com\ewhale\points\ws\interceptors\annotations\namebinding\VerifyDigitaSignature.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-08-15 09:15:15.796
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\PointsService.war\WEB-INF\classes\com\ewhale\points\ws\interceptors\annotations\namebinding\VerifyToken.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2016-08-15 13:43:17.947
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-08-15 13:43:19.242
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-08-15 13:43:49.693
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-08-15 13:44:55.210
+!MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-08-22 13:55:30.612
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-08-22 13:56:08.188
+!MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-09-04 23:05:18.790
+!MESSAGE Incremental publish failed for module PointsCommon
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:18.790
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\test\GenSig.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:18.790
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\test\SecurityTest.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:18.790
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\test\VerSig.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:18.790
+!MESSAGE Could not delete C:/wildfly-9.0.2.Final/standalone/deployments/Points.ear/lib/PointsCommon.jar/com/ewhale/points/common/security/test. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:18.790
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\CMSAndroidSecurityFactory$FixedRandom.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:18.790
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\CMSAndroidSecurityFactory.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:18.790
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\CMSSecurityFactory$FixedRandom.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:18.790
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\CMSSecurityFactory.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:18.790
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\RSASecurityFactory$FixedRandom.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:18.790
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\RSASecurityFactory.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-09-04 23:05:18.835
+!MESSAGE Incremental publish failed for module PointsService
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:18.836
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\PointsService.war\WEB-INF\classes\com\ewhale\points\ws\main\ServiceApp.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-09-04 23:05:23.137
+!MESSAGE Incremental publish failed for module PointsCommon
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:23.137
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\PointsWeb.war\WEB-INF\lib\PointsCommon.jar\com\ewhale\points\common\security\CMSAndroidSecurityFactory$FixedRandom.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:23.137
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\PointsWeb.war\WEB-INF\lib\PointsCommon.jar\com\ewhale\points\common\security\CMSAndroidSecurityFactory.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:23.137
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\PointsWeb.war\WEB-INF\lib\PointsCommon.jar\com\ewhale\points\common\security\CMSSecurityFactory$FixedRandom.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:23.138
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\PointsWeb.war\WEB-INF\lib\PointsCommon.jar\com\ewhale\points\common\security\CMSSecurityFactory.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:23.138
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\PointsWeb.war\WEB-INF\lib\PointsCommon.jar\com\ewhale\points\common\security\RSASecurityFactory$FixedRandom.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-04 23:05:23.138
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\PointsWeb.war\WEB-INF\lib\PointsCommon.jar\com\ewhale\points\common\security\RSASecurityFactory.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-04 23:05:26.982
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-04 23:05:50.587
+!MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-09 14:08:40.857
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-09 14:10:54.215
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-09-09 14:18:44.375
+!MESSAGE Server processes have been terminated.
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-09-21 14:56:23.625
+!MESSAGE Incremental publish failed for module PointsCommon
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-21 14:56:23.626
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\util\DateUtils.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-21 14:56:33.618
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-21 14:57:07.469
+!MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-09-21 19:04:14.823
+!MESSAGE Incremental publish failed for module PointsCommon
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-21 19:04:14.823
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\util\DateUtils.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-21 19:04:18.851
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-21 19:04:36.867
+!MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-21 21:26:24.518
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-21 21:26:37.332
+!MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-09-23 13:23:24.700
+!MESSAGE Incremental publish failed for module PointsCommon
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-23 13:23:24.701
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\cms\android\DataDecryptor.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-23 13:23:24.701
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\cms\android\TrustKeyGenerator.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-23 13:23:24.701
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\keystore\PointsAndroidDSTrustKeystore.jks. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-09-23 13:23:29.678
+!MESSAGE Incremental publish failed for module PointsCommon
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-23 13:23:29.678
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\PointsWeb.war\WEB-INF\lib\PointsCommon.jar\com\ewhale\points\common\security\cms\android\DataDecryptor.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-23 13:23:29.678
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\PointsWeb.war\WEB-INF\lib\PointsCommon.jar\com\ewhale\points\common\security\cms\android\TrustKeyGenerator.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-23 13:23:29.678
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\PointsWeb.war\WEB-INF\lib\PointsCommon.jar\com\ewhale\points\common\security\keystore\PointsAndroidDSTrustKeystore.jks. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-23 13:23:38.700
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-23 13:24:05.635
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2016-09-23 14:00:39.888
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-09-23 14:00:40.638
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-23 14:06:00.283
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-23 14:06:10.199
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2016-09-23 15:13:10.626
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-09-23 15:13:11.475
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-23 15:13:12.551
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-23 15:13:19.353
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2016-09-23 15:20:30.343
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-09-23 15:20:30.653
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-23 15:20:31.829
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-23 15:20:35.954
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2016-09-23 15:39:29.727
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-09-23 15:39:30.496
+!MESSAGE Server processes have been terminated.
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-26 14:00:53.075
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-26 14:01:10.300
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-09-26 15:01:14.070
+!MESSAGE Server processes have been terminated.
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-28 15:23:53.407
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-28 15:24:18.873
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-09-28 21:19:14.676
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-28 21:19:23.237
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-28 21:19:28.046
+!MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-09-29 10:58:41.898
+!MESSAGE Incremental publish failed for module PointsService
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-29 10:58:41.898
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\PointsService.war\WEB-INF\classes\com\ewhale\points\ws\filter\ServiceFilter.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-29 10:58:41.898
+!MESSAGE Could not delete C:/wildfly-9.0.2.Final/standalone/deployments/Points.ear/PointsService.war/WEB-INF/classes/com/ewhale/points/ws/filter. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-09-29 10:58:45.349
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-09-29 10:59:00.370
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-09-29 10:59:40.365
+!MESSAGE Incremental publish failed for module PointsService
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-29 10:59:40.365
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\PointsService.war\WEB-INF\classes\com\ewhale\points\ws\filter\ServiceFilter.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-29 10:59:40.365
+!MESSAGE Could not delete C:/wildfly-9.0.2.Final/standalone/deployments/Points.ear/PointsService.war/WEB-INF/classes/com/ewhale/points/ws/filter. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-09-29 11:00:16.236
+!MESSAGE Incremental publish failed for module PointsService
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-29 11:00:16.236
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\PointsService.war\WEB-INF\classes\com\ewhale\points\ws\filter\ServiceFilter.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-29 11:00:16.236
+!MESSAGE Could not delete C:/wildfly-9.0.2.Final/standalone/deployments/Points.ear/PointsService.war/WEB-INF/classes/com/ewhale/points/ws/filter. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-09-29 11:00:37.214
+!MESSAGE Incremental publish failed for module PointsService
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-29 11:00:37.214
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\PointsService.war\WEB-INF\classes\com\ewhale\points\ws\filter\ServiceFilter.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-09-29 11:00:37.214
+!MESSAGE Could not delete C:/wildfly-9.0.2.Final/standalone/deployments/Points.ear/PointsService.war/WEB-INF/classes/com/ewhale/points/ws/filter. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2016-09-29 11:58:22.123
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-09-29 11:58:23.692
+!MESSAGE Server processes have been terminated.
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-10-03 10:43:06.140
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-10-03 10:43:30.360
+!MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-10-03 11:28:17.915
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-10-03 11:28:24.529
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2016-10-03 11:29:34.883
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-10-03 11:29:36.120
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-10-03 11:29:37.249
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-10-03 11:29:42.557
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2016-10-03 11:37:52.783
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-10-03 11:37:53.015
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-10-03 11:38:06.316
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-10-03 11:38:11.191
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2016-10-03 11:43:46.010
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-10-03 11:43:46.362
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-10-03 11:43:55.816
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-10-03 11:44:01.230
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-10-03 11:49:08.246
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-10-03 11:49:24.132
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-10-03 11:49:30.149
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-10-03 11:54:38.917
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-10-03 11:54:49.827
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-10-03 11:54:55.036
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-10-03 11:56:44.010
+!MESSAGE Server processes have been terminated.
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-10-07 12:48:19.287
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-10-07 12:49:27.315
+!MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-10-18 14:17:43.851
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-10-18 14:19:24.074
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-10-18 14:26:46.147
+!MESSAGE Server processes have been terminated.
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-10-19 13:00:52.286
+!MESSAGE Incremental publish failed for module PointsCommon
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-19 13:00:52.286
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataDecryptor.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-19 13:00:52.286
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataEncryptor.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-19 13:00:52.286
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataSigner.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-19 13:00:52.286
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataVerifier.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-19 13:00:52.286
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\KeyGenerator.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-19 13:00:52.286
+!MESSAGE Could not delete C:/wildfly-9.0.2.Final/standalone/deployments/Points.ear/lib/PointsCommon.jar/com/ewhale/points/common/security/rsa. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-19 13:00:52.286
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\RSASecurityBuilder.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-10-19 13:01:07.786
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-10-19 13:01:14.682
+!MESSAGE Server processes have been terminated.
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-10-20 12:26:50.838
+!MESSAGE Incremental publish failed for module PointsCommon
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:26:50.838
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataDecryptor.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:26:50.838
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataEncryptor.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:26:50.838
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataSigner.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:26:50.838
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataVerifier.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:26:50.838
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\KeyGenerator.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:26:50.838
+!MESSAGE Could not delete C:/wildfly-9.0.2.Final/standalone/deployments/Points.ear/lib/PointsCommon.jar/com/ewhale/points/common/security/rsa. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:26:50.838
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\RSASecurityBuilder.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-10-20 12:26:56.690
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-10-20 12:29:25.653
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-10-20 12:30:12.845
+!MESSAGE Incremental publish failed for module PointsCommon
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:12.845
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataDecryptor.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:12.845
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataEncryptor.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:12.845
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataSigner.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:12.845
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataVerifier.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:12.845
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\KeyGenerator.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:12.845
+!MESSAGE Could not delete C:/wildfly-9.0.2.Final/standalone/deployments/Points.ear/lib/PointsCommon.jar/com/ewhale/points/common/security/rsa. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:12.845
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\RSASecurityBuilder.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2016-10-20 12:30:35.474
+!MESSAGE Incremental publish failed for module PointsCommon
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:35.474
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataDecryptor.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:35.474
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataEncryptor.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:35.474
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataSigner.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:35.474
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\DataVerifier.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:35.474
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\rsa\KeyGenerator.class. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:35.474
+!MESSAGE Could not delete C:/wildfly-9.0.2.Final/standalone/deployments/Points.ear/lib/PointsCommon.jar/com/ewhale/points/common/security/rsa. May be locked by another process.
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2016-10-20 12:30:35.474
+!MESSAGE Could not delete C:\wildfly-9.0.2.Final\standalone\deployments\Points.ear\lib\PointsCommon.jar\com\ewhale\points\common\security\RSASecurityBuilder.class. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-10-20 12:43:58.834
+!MESSAGE Server processes have been terminated.
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2016-10-26 14:16:21.813
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2016-10-26 14:17:52.466
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2016-10-26 15:48:31.660
+!MESSAGE Server processes have been terminated.

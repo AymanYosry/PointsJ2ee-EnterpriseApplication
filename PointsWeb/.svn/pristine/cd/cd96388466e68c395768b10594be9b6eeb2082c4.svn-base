@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form>
+
+			<p:panelGrid columns="2" styleClass="ui-noborder">
+				<p:outputLabel for="firstname" value="#{labels.firstName}" />
+				<p:outputLabel id="firstname" value="#{sysAdminAgentEmployeeBean.firstName}" label="firstname" />
+				<p:outputLabel for="lastname" value="#{labels.lastName}" />
+				<p:outputLabel id="lastname" value="#{sysAdminAgentEmployeeBean.lastName}" label="lastname" />
+				<p:outputLabel for="user" value="#{labels.mobile}" />
+				<p:outputLabel id="user" value="#{sysAdminAgentEmployeeBean.mobile}" label="user" />
+
+				<p:outputLabel for="roleId" value="#{labels.role}" />
+				<p:outputLabel id="roleId" value="#{sysAdminAgentEmployeeBean.roleName}" />
+
+				<p:outputLabel for="statusId" value="#{labels.status}" />
+				<p:outputLabel id="statusId" value="#{sysAdminAgentEmployeeBean.statusName}" />
+				<p:commandButton type="submit" value="#{labels.activate}" action="#{sysAdminAgentEmployeeBean.activateStatus()}" />
+				<p:commandButton type="submit" value="#{labels.block}" action="#{sysAdminAgentEmployeeBean.blockStatus()}" />
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

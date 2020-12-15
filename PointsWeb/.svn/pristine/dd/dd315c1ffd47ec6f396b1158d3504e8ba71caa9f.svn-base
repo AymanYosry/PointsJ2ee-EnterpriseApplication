@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp">
+
+<f:loadBundle basename="resources.application" var="labels" />
+<ui:composition template="/resources/templates/common/layout.xhtml">
+	<ui:define name="content_center">
+		<h:form id="form">
+			<p:panelGrid>
+				<p:panelGrid style="backgroud-color:red;">
+					<p:outputLabel value="#{labels.adjustBalanceNeeded} #{agentAdminHomeBean.agentBalance}" rendered="#{agentAdminHomeBean.agentBalance lt 0}"></p:outputLabel>
+				</p:panelGrid>
+				<p:panelGrid>
+					<h:outputText value="#{labels.rate}" />
+					<p:rating value="#{agentAdminHomeBean.agentRate}" readonly="true" />
+				</p:panelGrid>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
+

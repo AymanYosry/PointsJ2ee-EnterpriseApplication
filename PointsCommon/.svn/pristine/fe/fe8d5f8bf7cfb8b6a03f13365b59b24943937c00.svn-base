@@ -1,0 +1,129 @@
+package com.ewhale.points.common.security;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+
+import com.ewhale.points.common.exception.AuthenticationSecurityException;
+import com.ewhale.points.common.util.AppConstants;
+
+public abstract class SecurityBuilder
+{
+
+	/**
+	 * Sign Data
+	 * 
+	 * @param data
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public abstract String sign(String data) throws AuthenticationSecurityException;
+
+	/**
+	 * Verify Data
+	 * 
+	 * @param data
+	 * @param signature
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public abstract boolean verify(String data, String signature) throws AuthenticationSecurityException;
+
+	/**
+	 * @param password
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public abstract String encrypt(String password) throws AuthenticationSecurityException;
+
+	/**
+	 * @param password
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public abstract String decrypt(String password) throws AuthenticationSecurityException;
+
+	/**
+	 * @param password
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public abstract String authenticate(String password) throws AuthenticationSecurityException;
+
+	public abstract byte[] hashSHA256(String data) throws AuthenticationSecurityException;
+
+	public abstract String toHex(byte[] hash) throws AuthenticationSecurityException;
+
+	public abstract String getRandomNumber(int numberOfDigits);
+
+	public abstract String passwordHashing(String password) throws AuthenticationSecurityException;
+
+	public abstract String getRandomPassword() throws AuthenticationSecurityException;
+
+	public abstract byte[] hashSHA512(String data) throws AuthenticationSecurityException;
+
+	/**
+	 * @return SecureRandom
+	 */
+	public static SecureRandom createRandom()
+	{
+		return new SecureRandom();
+	}
+
+	/**
+	 * @return SecureRandom
+	 */
+	public static SecureRandom createFixedRandom()
+	{
+		return new FixedRandom();
+	}
+
+	private static class FixedRandom extends SecureRandom
+	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		MessageDigest sha;
+
+		byte[] state;
+
+		FixedRandom()
+		{
+			try
+			{
+				this.sha = MessageDigest.getInstance(AppConstants.SecurityConstants.SHA256_ALGORITHM);
+				this.state = sha.digest();
+			}
+			catch (NoSuchAlgorithmException e)
+			{
+				throw new RuntimeException("can't find " + AppConstants.SecurityConstants.SHA256_ALGORITHM + " Algorithm!");
+			}
+		}
+
+		public void nextBytes(byte[] bytes)
+		{
+			int off = 0;
+			sha.update(state);
+
+			while (off < bytes.length)
+			{
+				state = sha.digest();
+				if (bytes.length - off > state.length)
+				{
+					System.arraycopy(state, 0, bytes, off, state.length);
+				}
+				else
+				{
+					System.arraycopy(state, 0, bytes, off, bytes.length - off);
+				}
+
+				off += state.length;
+
+				sha.update(state);
+			}
+		}
+	}
+
+}

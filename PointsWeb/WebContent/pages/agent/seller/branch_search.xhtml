@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp">
+
+
+
+<ui:composition template="/resources/templates/common/layout_agent_seller.xhtml">
+	<ui:define name="search_panel">
+		<p:panelGrid  styleClass="ui-noborder" columns="4">
+			<p:outputLabel for="stateId" value="#{labels.state}" />
+			<p:selectOneMenu id="stateId" value="#{agentSellerBranchBean.stateId}">
+				<f:selectItem itemLabel="#{labels.selectOne}" />
+				<f:selectItems value="#{agentSellerBranchBean.statesList}" var="state" itemLabel="#{state.get(entityConstantsBean.state.stateName)}"
+					itemValue="#{state.get(entityConstantsBean.state.stateId)}" />
+			</p:selectOneMenu>
+			<p:commandButton value="#{labels.search}" id="search" update="growl search_table" 
+				actionListener="#{agentSellerBranchBean.getAgentBranches()}" />
+		</p:panelGrid>
+	</ui:define>
+
+	<ui:define name="content_center">
+		<em:search_component table_bean="#{agentSellerBranchBean}"></em:search_component>
+	</ui:define>
+
+</ui:composition>
+
+</html>
+

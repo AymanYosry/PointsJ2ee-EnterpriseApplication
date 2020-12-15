@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="PointsModel">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/PointsDS</jta-data-source>
+		<class>com.ewhale.points.model.entity.Agent</class>
+		<class>com.ewhale.points.model.entity.AgentRate</class>
+		<class>com.ewhale.points.model.entity.Branch</class>
+		<class>com.ewhale.points.model.entity.Category</class>
+		<class>com.ewhale.points.model.entity.Contract</class>
+		<class>com.ewhale.points.model.entity.Country</class>
+		<class>com.ewhale.points.model.entity.Currency</class>
+		<class>com.ewhale.points.model.entity.District</class>
+		<class>com.ewhale.points.model.entity.FunctionType</class>
+		<class>com.ewhale.points.model.entity.ItemStatus</class>
+		<class>com.ewhale.points.model.entity.MessageCenter</class>
+		<class>com.ewhale.points.model.entity.PaymentMethod</class>
+		<class>com.ewhale.points.model.entity.Point</class>
+		<class>com.ewhale.points.model.entity.PointsExchange</class>
+		<class>com.ewhale.points.model.entity.Product</class>
+		<class>com.ewhale.points.model.entity.Profile</class>
+		<class>com.ewhale.points.model.entity.Promotion</class>
+		<class>com.ewhale.points.model.entity.Purchase</class>
+		<class>com.ewhale.points.model.entity.Role</class>
+		<class>com.ewhale.points.model.entity.State</class>
+		<class>com.ewhale.points.model.entity.Status</class>
+		<class>com.ewhale.points.model.entity.SysEvent</class>
+		<class>com.ewhale.points.model.entity.SysInvoice</class>
+		<class>com.ewhale.points.model.entity.SysPayment</class>
+
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="true"/>
+		</properties>
+	</persistence-unit>
+</persistence>

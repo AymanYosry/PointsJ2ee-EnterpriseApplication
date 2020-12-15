@@ -1,0 +1,191 @@
+package com.ewhale.points.common.security.cms.android;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+
+import com.ewhale.points.common.exception.AuthenticationSecurityException;
+import com.ewhale.points.common.util.AppConstants;
+
+/**
+ * @author Ayman Yosry
+ */
+public class CMSKeyGenerator implements Serializable
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String keystorePassword = null;
+	String keystoreFile = null;
+	private String CERT_FILE = AppConstants.SecurityConstants.AUTH_CERT_FILE;
+	private String CERT_ALIAS = AppConstants.SecurityConstants.AUTH_CERT_ALIAS;
+
+	//
+	public CMSKeyGenerator(String keystoreFile, String keystorePassword)
+	{
+		this.keystoreFile = keystoreFile;
+		this.keystorePassword = keystorePassword;
+	}
+
+	/**
+	 * 
+	 * @param keystoreFile
+	 * @param password
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public KeyStore getKeystore() throws AuthenticationSecurityException
+	{
+		KeyStore keystore = null;
+		InputStream input = null;
+		try
+		{
+			keystore = KeyStore.getInstance(AppConstants.SecurityConstants.ANDROID_KEYSTORE_INSTANCE);
+			keystore.load(null);
+			// Load Certificate
+			X509Certificate cert = loadCertificate();
+			// Add the certificate
+			keystore.setCertificateEntry(CERT_ALIAS, cert);
+		}
+		catch (KeyStoreException e)
+		{
+			throw new AuthenticationSecurityException("Problem in loading keystore ...", e);
+		}
+		catch (CertificateException | NoSuchAlgorithmException | IOException e)
+		{
+			throw new AuthenticationSecurityException("Problem in loading certificate ...", e);
+		}
+		finally
+		{
+			if (input != null)
+			{
+				try
+				{
+					input.close();
+				}
+				catch (IOException e)
+				{
+					throw new AuthenticationSecurityException("IO Problem in closng keystore ...", e);
+				}
+			}
+		}
+
+		return keystore;
+	}
+
+	/**
+	 * 
+	 * @param certificateAlias
+	 * @param privatekeyPassword
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public PrivateKey getPrivateKey(String certificateAlias, String privatekeyPassword)
+			throws AuthenticationSecurityException
+	{
+		PrivateKey privateKey;
+		try
+		{
+			KeyStore keystore = getKeystore();
+			privateKey = (PrivateKey) keystore.getKey(certificateAlias, privatekeyPassword.toCharArray());
+		}
+		catch (UnrecoverableKeyException | KeyStoreException | NoSuchAlgorithmException e)
+		{
+			throw new AuthenticationSecurityException("IO Problem in exporting private key ...", e);
+		}
+		return privateKey;
+	}
+
+	/**
+	 * 
+	 * @param certificateAlias
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public PublicKey getPublicKey(String certificateAlias) throws AuthenticationSecurityException
+	{
+		X509Certificate cert = getCertificate(certificateAlias);
+		PublicKey publicKey = cert.getPublicKey();
+
+		return publicKey;
+	}
+
+	public X509Certificate getCertificate(String certificateAlias) throws AuthenticationSecurityException
+	{
+		X509Certificate cert = null;
+		try
+		{
+			KeyStore keystore = getKeystore();
+			cert = (X509Certificate) keystore.getCertificate(certificateAlias);
+		}
+		catch (KeyStoreException e)
+		{
+			throw new AuthenticationSecurityException("IO Problem in exporting Certificate ...", e);
+		}
+		printCertificateInfo(cert);
+		return (X509Certificate) cert;
+	}
+
+	public X509Certificate loadCertificate() throws AuthenticationSecurityException
+	{
+		Certificate cert;
+		try
+		{
+			CertificateFactory cf = CertificateFactory.getInstance("X.509");
+			InputStream certstream = CMSKeyGenerator.class.getResourceAsStream(CERT_FILE);
+			cert = cf.generateCertificate(certstream);
+		}
+		catch (CertificateException e)
+		{
+			throw new AuthenticationSecurityException("Problem in loading Certificate ...", e);
+		}
+
+		return (X509Certificate) cert;
+	}
+
+	private void printCertificateInfo(Certificate cert)
+	{
+		X509Certificate x509 = (X509Certificate) cert;
+		// Print to console information contained in the certificate.
+		System.out.println("--------------------------------------------------------");
+		System.out.println("Subject: \t" + x509.getSubjectDN().getName());
+		System.out.println("Issuer: \t" + x509.getIssuerDN().getName());
+		System.out.println("Version: \t" + x509.getVersion());
+		System.out.println("Valid Date: \t" + x509.getNotBefore());
+		System.out.println("Expiry Date: \t\t" + x509.getNotAfter());
+		System.out.println("Type: \t" + x509.getType());
+		System.out.println("Serial Number: \t\t" + x509.getSerialNumber());
+		System.out.println("Algorithm OID: \t\t" + x509.getSigAlgOID());
+		System.out.println("Signature Algorithm:\t\t\t" + x509.getSigAlgName());
+		System.out.println("Algorithm: \t" + x509.getPublicKey().getAlgorithm());
+		System.out.println("Public Key Format: \t\t" + x509.getPublicKey().getFormat());
+		System.out.println("Signature Length: \t\t" + x509.getSignature().length);
+		// System.out.println("Certificate to string:" + x509.toString());
+		System.out.println("--------------------------------------------------------");
+	}
+
+	public static void main(String arg[])
+	{
+		CMSKeyGenerator keys = new CMSKeyGenerator(null, null);
+		try
+		{
+			X509Certificate cert = keys.loadCertificate();
+			keys.printCertificateInfo(cert);
+		}
+		catch (AuthenticationSecurityException e)
+		{
+			e.printStackTrace();
+		}
+	}
+}

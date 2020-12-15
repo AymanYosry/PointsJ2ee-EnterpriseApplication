@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp">
+
+
+
+<ui:composition template="/resources/templates/common/layout.xhtml">
+	<ui:define name="search_panel">
+		<p:panelGrid columns="8" styleClass="ui-noborder">
+			<p:outputLabel for="requestDate_from" value="#{labels.from} #{labels.requestDate}" />
+			<p:calendar id="requestDate_from" value="#{agentAdminAgentMessageBean.fromRequestDate}" pattern="#{entityConstantsBean.dateFormat}" />
+			<p:outputLabel for="requestDate_to" value="#{labels.to} #{labels.requestDate}" />
+			<p:calendar id="requestDate_to" value="#{agentAdminAgentMessageBean.toRequestDate}" pattern="#{entityConstantsBean.dateFormat}" />
+			<p:outputLabel for="functionTypeId" value="#{labels.requestType}" />
+			<p:selectOneMenu id="functionTypeId" value="#{agentAdminAgentMessageBean.functionTypeId}">
+				<f:selectItem itemLabel="#{labels.selectOne}" />
+				<f:selectItems value="#{agentAdminAgentMessageBean.functionTypes}" var="functionType" itemLabel="#{functionType.get(entityConstantsBean.functionType.functionTypeName)}"
+					itemValue="#{functionType.get(entityConstantsBean.functionType.functionTypeId)}" />
+			</p:selectOneMenu>
+
+			<p:commandButton value="#{labels.search}" id="search" update="growl search_table" actionListener="#{agentAdminAgentMessageBean.viewMessagesList()}" />
+		</p:panelGrid>
+	</ui:define>
+	<ui:define name="content_center">
+		<em:search_component table_bean="#{agentAdminAgentMessageBean}"></em:search_component>
+	</ui:define>
+</ui:composition>
+
+</html>
+

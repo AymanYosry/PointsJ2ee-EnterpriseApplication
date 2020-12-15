@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:form  enctype="multipart/form-data">
+	<p:panelGrid  styleClass="ui-noborder" columns="2" cellpadding="5">
+		<p:outputLabel for="message" value="#{labels.message}" />
+		<p:inputText id="message" value="#{agentAdminAgentPromotionBean.message}" required="" />
+		<p:outputLabel for="messageDetails" value="#{labels.messageDetails}" />
+		<p:inputTextarea id="messageDetails" value="#{agentAdminAgentPromotionBean.messageDetails}" required="" />
+		<p:outputLabel for="promotionDate" value="#{labels.promotionDate}" />
+		<p:calendar id="promotionDate" value="#{agentAdminAgentPromotionBean.promotionDate}" required="true" pattern="#{entityConstantsBean.dateFormat}" />
+		<p:outputLabel for="photo" value="#{labels.photo}" />
+		<p:fileUpload id="photo" label="#{labels.photo}" value="#{agentAdminAgentPromotionBean.uploadedImage}" mode="simple" skinSimple="true"
+			update="growl" required="true" />
+		<p:outputLabel for="currency" value="#{labels.currency}" />
+		<p:selectOneMenu id="currency" value="#{agentAdminAgentPromotionBean.currencyId}" required="true">
+			<f:selectItem itemLabel="Select One" itemValue="" />
+			<f:selectItems value="#{agentAdminAgentPromotionBean.currenciesList}" var="currency" itemLabel="#{currency.get(entityConstantsBean.currency.currencyName)}"
+				itemValue="#{currency.get(entityConstantsBean.currency.currencyId)}" />
+		</p:selectOneMenu>
+		<!-- <p:outputLabel for="country" value="#{labels.country}" />
+		<p:selectOneMenu id="country" value="#{agentAdminAgentPromotionBean.countryId}" required="true">
+			<f:selectItem itemLabel="#{labels.selectOne}" itemValue="" />
+			<f:selectItems value="#{agentAdminAgentPromotionBean.countriesList}" var="country" itemLabel="#{country.get(entityConstantsBean.country.countryName)}"
+				itemValue="#{country.get(entityConstantsBean.country.countryId)}" />
+		</p:selectOneMenu> -->
+		<p:commandButton value="#{labels.add}" action="#{agentAdminAgentPromotionBean.addAgentPromotion()}" ajax="false" />
+	</p:panelGrid>
+</h:form>
+</html>

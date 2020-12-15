@@ -1,0 +1,19 @@
+----------------------------------------------------------------
+Thu Sep 22 13:00:59 GMT+02:00 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0157-518e-3bb4-000058438438 
+on database directory D:\DEVELOPMENT\workspace\PointsWS\.metadata\.plugins\de.walware.statet.r.core\db with class loader org.eclipse.osgi.internal.loader.EquinoxClassLoader@ed48b3[de.walware.3rdparty-org.apache.derby.core:10.10.2000000.b201511061600E44sw(id=3319)] 
+Loaded from file:/D:/ECLIPSE/eclipse_mars/plugins/de.walware.3rdparty-org.apache.derby.core_10.10.2000000.b201511061600E44sw.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_51-b16
+user.dir=D:\ECLIPSE\eclipse_mars
+os.name=Windows 7
+os.arch=x86
+os.version=6.1
+derby.system.home=D:\DEVELOPMENT\workspace\PointsWS\.metadata\.plugins\de.walware.ecommons.edb
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Sep 22 15:33:11 GMT+02:00 2016: Shutting down Derby engine
+----------------------------------------------------------------
+Thu Sep 22 15:33:11 GMT+02:00 2016:
+Shutting down instance a816c00e-0157-518e-3bb4-000058438438 on database directory D:\DEVELOPMENT\workspace\PointsWS\.metadata\.plugins\de.walware.statet.r.core\db with class loader org.eclipse.osgi.internal.loader.EquinoxClassLoader@ed48b3[de.walware.3rdparty-org.apache.derby.core:10.10.2000000.b201511061600E44sw(id=3319)] 
+----------------------------------------------------------------

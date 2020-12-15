@@ -1,0 +1,34 @@
+package com.ewhale.points.ws.main.proxy;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
+
+@Path("/Synchronization")
+@Consumes(MediaType.APPLICATION_JSON)
+public interface SynchronizationServiceClient
+{
+	@POST
+	@Path("/categories")
+	public List<Map<String, Object>> getAllCategories();
+
+	@POST
+	@Path("/agentsList")
+	public List<Map<String, Object>> getAgentsList(Map<String, Object> data);
+
+	@POST
+	@Path("/branchesList")
+	public List<Map<String, Object>> getBranchesList(Map<String, Object> data);
+
+	@POST
+	@Path("/productsList")
+	public List<Map<String, Object>> getProductsList(Map<String, Object> data);
+
+	@POST
+	@Path("/promotionsList")
+	public List<Map<String, Object>> getPromotionsList(Map<String, Object> data);
+}

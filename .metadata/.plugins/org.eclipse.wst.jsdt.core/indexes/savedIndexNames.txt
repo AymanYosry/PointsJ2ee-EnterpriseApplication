@@ -1,0 +1,8 @@
+INDEX VERSION 1.3+D:\DEV\workspace\PointsWS\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+40795597.index
+2968941587.index
+969959318.index
+3399058864.index
+1466041243.index
+1845865571.index
+1237149819.index

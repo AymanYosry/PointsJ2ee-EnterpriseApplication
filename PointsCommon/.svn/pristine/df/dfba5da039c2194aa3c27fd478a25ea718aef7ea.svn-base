@@ -1,0 +1,164 @@
+package com.ewhale.points.common.security.cms;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import com.ewhale.points.common.exception.AuthenticationSecurityException;
+import com.ewhale.points.common.util.AppConstants;
+
+/**
+ * @author Ayman Yosry
+ */
+public class KeyGenerator implements Serializable
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String keystorePassword = null;
+	String keystoreFile = null;
+	String certificateAlias = null; 
+	String privatekeyPassword = null;
+	//
+	public KeyGenerator(String keystoreFile, String keystorePassword, String certificateAlias, String privatekeyPassword)
+	{
+		this.keystoreFile = keystoreFile;
+		this.keystorePassword = keystorePassword;
+		this.certificateAlias = certificateAlias;
+		this.privatekeyPassword = privatekeyPassword;
+	}
+	
+	public KeyGenerator(String keystoreFile, String keystorePassword, String certificateAlias)
+	{
+		this.keystoreFile = keystoreFile;
+		this.keystorePassword = keystorePassword;
+		this.certificateAlias = certificateAlias;
+	}
+
+	/**
+	 * 
+	 * @param keystoreFile
+	 * @param password
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public KeyStore getKeyPair() throws AuthenticationSecurityException
+	{
+		KeyStore keystore = null;
+		InputStream input = null;
+		try
+		{
+			keystore = KeyStore.getInstance(AppConstants.SecurityConstants.KEYSTORE_INSTANCE);
+			input = KeyGenerator.class.getResourceAsStream(keystoreFile);
+			keystore.load(input, keystorePassword.toCharArray());
+		}
+		catch (KeyStoreException e)
+		{
+			throw new AuthenticationSecurityException("Problem in loading keystore ...", e);
+		}
+		catch (CertificateException | NoSuchAlgorithmException | IOException e)
+		{
+			throw new AuthenticationSecurityException("Problem in loading certificate ...", e);
+		}
+		finally
+		{
+			if (input != null)
+			{
+				try
+				{
+					input.close();
+				}
+				catch (IOException e)
+				{
+					throw new AuthenticationSecurityException("IO Problem in closng keystore ...", e);
+				}
+			}
+		}
+
+		return keystore;
+	}
+
+	/**
+	 * 
+	 * @param certificateAlias
+	 * @param privatekeyPassword
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public PrivateKey getPrivateKey() throws AuthenticationSecurityException
+	{
+		PrivateKey privateKey;
+		try
+		{
+			KeyStore keystore = getKeyPair();
+			privateKey = (PrivateKey) keystore.getKey(certificateAlias, privatekeyPassword.toCharArray());
+		}
+		catch (UnrecoverableKeyException | KeyStoreException | NoSuchAlgorithmException e)
+		{
+			throw new AuthenticationSecurityException("IO Problem in exporting private key ...", e);
+		}
+		return privateKey;
+	}
+
+	/**
+	 * 
+	 * @param certificateAlias
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public PublicKey getPublicKey() throws AuthenticationSecurityException
+	{
+		X509Certificate cert = getCertificate();
+		PublicKey publicKey = cert.getPublicKey();
+
+		return publicKey;
+	}
+
+	public X509Certificate getCertificate() throws AuthenticationSecurityException
+	{
+		X509Certificate cert = null;
+		try
+		{
+			KeyStore keystore = getKeyPair();
+			cert = (X509Certificate) keystore.getCertificate(certificateAlias);
+		}
+		catch (KeyStoreException e)
+		{
+			throw new AuthenticationSecurityException("IO Problem in exporting Certificate ...", e);
+		}
+		printCertificateInfo(cert);
+		return (X509Certificate) cert;
+	}
+
+	private void printCertificateInfo(Certificate cert)
+	{
+		// X509Certificate x509 = (X509Certificate) cert;
+		// Print to console information contained in the certificate.
+		// LOG.debug("--------------------------------------------------------");
+		// LOG.debug("Subject: \t" + x509.getSubjectDN().getName());
+		// LOG.debug("Issuer: \t" + x509.getIssuerDN().getName());
+		// LOG.debug("Version: \t" + x509.getVersion());
+		// LOG.debug("Valid Date: \t" + x509.getNotBefore());
+		// LOG.debug("Expiry Date: \t\t" + x509.getNotAfter());
+		// LOG.debug("Type: \t" + x509.getType());
+		// LOG.debug("Serial Number: \t\t" + x509.getSerialNumber());
+		// LOG.debug("Algorithm OID: \t\t" + x509.getSigAlgOID());
+		// LOG.debug("Signature Algorithm:\t\t\t" + x509.getSigAlgName());
+		// LOG.debug("Algorithm: \t" + x509.getPublicKey().getAlgorithm());
+		// LOG.debug("Public Key Format: \t\t" +
+		// x509.getPublicKey().getFormat());
+		// LOG.debug("Signature Length: \t\t" + x509.getSignature().length);
+		//// LOG.debug("Certificate to string:" + x509.toString());
+		// LOG.debug("--------------------------------------------------------");
+	}
+}

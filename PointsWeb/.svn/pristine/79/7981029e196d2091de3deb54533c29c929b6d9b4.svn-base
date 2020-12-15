@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+<f:loadBundle basename="resources.application" var="labels" />
+<h:head>
+	<h:outputStylesheet name="points-style.css" library="css" />
+	<h:outputStylesheet name="showcase.css" library="css" />
+	<h:outputStylesheet name="perfect-scrollbar.css" library="css" />
+	<h:outputStylesheet name="sh.css" library="css" />
+	<h:outputScript name="perfect-scrollbar.js" library="js" />
+	<h:outputScript name="showcase.js" library="js" />
+</h:head>
+
+<h:body id="layout_body">
+	<p:growl id="growl" autoUpdate="true" showDetail="true" />
+
+	<div id="page">
+		<div id="content">
+			<ui:insert name="content_center">
+				<ui:include src="content_center.xhtml" />
+			</ui:insert>
+		</div>
+	</div>
+
+	<p:ajaxStatus style="width:64px;height:64px;position:fixed;right:5px;bottom:5px">
+		<f:facet name="start">
+			<p:graphicImage name="/images/loader.gif" />
+		</f:facet>
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+
+	<p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException" update="exceptionDialog" onexception="PF('exceptionDialog').show();" />
+	<p:dialog id="exceptionDialog" header="Exception: #{pfExceptionHandler.type} occured!" widgetVar="exceptionDialog" height="500px">
+			Message: #{pfExceptionHandler.message} <br />
+		<!-- StackTrace: 
+		<h:outputText value="#{pfExceptionHandler.formattedStackTrace}" escape="false" /> -->
+		<p:button onclick="document.location.href = document.location.href;" value="Reload!" />
+	</p:dialog>
+</h:body>
+
+</html>

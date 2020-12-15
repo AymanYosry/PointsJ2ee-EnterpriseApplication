@@ -1,0 +1,110 @@
+/**
+ * 
+ */
+package com.ewhale.points.common.util;
+
+import java.text.SimpleDateFormat;
+
+/**
+ * @author Ayman Yosry
+ */
+public interface AppConstants
+{
+	// IMP_Ayman this data will be exported in a jar file to be used by the points APP so should not be configured on the server
+	// but can be out in a config file in the jar
+	int KEY_SIZE = 1024; // IMP_Ahmed this data should be read from property file under wildfly
+
+	String SESSION_KEY = "jCryptionKeys";
+
+	// IMP_Ayman this data will be exported in a jar file to be used by the points APP so should not be configured on the server
+	// but can be out in a config file in the jar
+	 String HOSTNAME = "localhost";
+//	String HOSTNAME = "162.168.1.3";
+	// String HOSTNAME = "139.162.219.122"; // IMP_Ahmed this data should be read from property file under wildfly
+
+	String SERVICE_MAIN_PATH = "/PointsService/rest";
+
+	String WEBPROTOCOL = "http";
+
+	String PORT = "8080";
+
+	// IMP_Ayman this data will be exported in a jar file to be used by the points APP so should not be configured on the server
+	// but can be out in a config file in the jar
+	String RESPONSE_TYPE = "application/json"; 	// IMP_Ahmed this data should be read from property file under wildfly
+
+	String EMPTY_STRING = "";
+
+	String ERROR_PAGE = "http://localhost:8080/PointsWeb/ControllerServlet";
+
+	String LOGIN_SERVICE = "login";
+
+	String dateFormatStr = "dd-MM-yyyy";
+
+	String dateTimeFormatStr = "dd-MM-yyyy hh:mm";
+
+	SimpleDateFormat dateTimeFormat = new SimpleDateFormat(dateTimeFormatStr);
+
+	SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatStr);
+
+	// Security Constants
+	interface SecurityConstants
+	{
+		int CPU_COST = 16;
+
+		int MEMORY_COST = 16;
+
+		int PARALLELIZATION = 16;
+
+		String SHA256withRSA_ALGORITHM = "SHA256withRSA";
+
+		String SHA1withRSA_ALGORITHM = "SHA1withRSA";
+
+		String SHA256_ALGORITHM = "SHA-256";
+
+		String SHA512_ALGORITHM = "SHA-512";
+
+		String SHA1_ALGORITHM = "SHA-1";
+
+		String RSA_ALGORITHM = "RSA";//"RSA";
+		
+		String CIPHER_ALGORITHM = "RSA/ECB/PKCS1Padding";//"RSA/ECB/NoPadding";
+		
+		String KEYSTORE_INSTANCE = "JKS";
+		
+		String PROVIDER = "SC"; // "BC";
+
+		//Digital Signature Certificate Information 
+		String DS_KEYSTORE = "/com/ewhale/points/common/security/keystore/PointsDSKeystore.jks";
+		String DS_TRUST_KEYSTORE = "/com/ewhale/points/common/security/keystore/PointsDSTrustKeystore.jks";
+		String DS_KEYSTORE_PWD = "ewKeystorePass123";
+		String DS_PRIVATEKEY_PWD = "ewPrivkeyPass123";
+		String DS_CERT_ALIAS = "POINTSDSKS";
+
+		//Authentication Certificate Information 
+		String AUTH_KEYSTORE = "/com/ewhale/points/common/security/keystore/PointsAuthKeystore.jks";
+		String AUTH_TRUST_KEYSTORE = "/com/ewhale/points/common/security/keystore/PointsAuthTrustKeystore.jks";
+		String AUTH_KEYSTORE_PWD = "ewKeystorePass123";
+		String AUTH_CERT_FILE = "PointsAuthCert.cer";
+		String AUTH_PRIVATEKEY_PWD = "ewPrivkeyPass123";
+		String AUTH_CERT_ALIAS = "POINTSAUTHKS";
+		
+		String ANDROID_KEYSTORE_INSTANCE = "AndroidKeyStore";
+
+		String ENCODE_TYPE = "UTF-16LE";
+
+		String ENCODE_TYPE_8 = "UTF-8";
+
+		int PASSWORD_BITS = 70;
+
+		int PASSWORD_RADIX = 32;
+
+		String SIGNATURE = "signature";
+
+		String SIGNATURE_SEPARATOR = "-!!-";
+
+		String TOKEN = "token";
+
+		int TOKEN_TIME_OUT = -60;
+
+	}// End
+}

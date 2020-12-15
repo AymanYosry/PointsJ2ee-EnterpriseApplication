@@ -1,0 +1,49 @@
+/**
+ * 
+ */
+package com.ewhale.points.ws.main;
+
+import java.util.ArrayList;
+
+import com.ewhale.points.common.exception.FacadeException;
+import com.ewhale.points.common.util.EntityConstants;
+import com.ewhale.points.controller.facade.AgentFacade;
+import com.ewhale.points.controller.facade.BranchFacade;
+import com.ewhale.points.controller.facade.ProductFacade;
+import com.ewhale.points.controller.facade.PromotionFacade;
+
+/**
+ * @author Ahmad Khalil
+ */
+public class SynchronizationControler extends ServiceControler
+{
+	public Integer[] isSynchronizationNeeded(long dateInTimeMillis, AgentFacade agentFacade, ProductFacade productFacade,
+			PromotionFacade promotionFacade, BranchFacade branchFacade) throws FacadeException
+	{
+		ArrayList<Integer> dataToSynchronize = new ArrayList<>();
+		if (agentFacade.isSynchronizationNeeded(dateInTimeMillis))
+		{
+			dataToSynchronize.add(EntityConstants.Synchronization.agentSyncNeeded);
+			dataToSynchronize.add(EntityConstants.Synchronization.countrySyncNeeded);
+			dataToSynchronize.add(EntityConstants.Synchronization.districtSyncNeeded);
+			dataToSynchronize.add(EntityConstants.Synchronization.stateSyncNeeded);
+			dataToSynchronize.add(EntityConstants.Synchronization.categorySyncNeeded);
+		}
+		if (productFacade.isSynchronizationNeeded(dateInTimeMillis))
+		{
+			dataToSynchronize.add(EntityConstants.Synchronization.productSyncNeeded);
+		}
+		if (promotionFacade.isSynchronizationNeeded(dateInTimeMillis))
+		{
+			dataToSynchronize.add(EntityConstants.Synchronization.promotionSyncNeeded);
+		}
+		if (branchFacade.isSynchronizationNeeded(dateInTimeMillis))
+		{
+			dataToSynchronize.add(EntityConstants.Synchronization.promotionSyncNeeded);
+			dataToSynchronize.add(EntityConstants.Synchronization.countrySyncNeeded);
+			dataToSynchronize.add(EntityConstants.Synchronization.districtSyncNeeded);
+			dataToSynchronize.add(EntityConstants.Synchronization.stateSyncNeeded);
+		}
+		return dataToSynchronize.toArray(new Integer[0]);
+	}
+}

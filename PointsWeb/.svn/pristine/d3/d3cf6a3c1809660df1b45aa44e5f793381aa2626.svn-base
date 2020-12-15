@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<p:panelGrid  styleClass="ui-noborder" columns="2" cellpadding="5">
+			<p:outputLabel value="#{labels.tradeMark}" />
+			<p:outputLabel value="#{agentSellerProductBean.agentName}" />
+			<p:outputLabel value="#{labels.productName}" />
+			<p:outputLabel value="#{agentSellerProductBean.productName}" />
+			<p:outputLabel value="" />
+			<h:graphicImage url="#{'data:image/jpeg;charset=utf-8;base64, '}#{agentSellerProductBean.photo}" width="100px" height="100px"
+				alt="photo not found" />
+			<p:outputLabel value="#{labels.pointsValue}" />
+			<p:outputLabel value="#{agentSellerProductBean.pointsValue}" />
+			<!-- <p:outputLabel value="#{labels.productPrice}" />
+			<p:outputLabel value="#{agentSellerProductBean.price}" /> -->
+			<p:outputLabel value="#{labels.validityDate}" />
+			<p:outputLabel value="#{agentSellerProductBean.viewValidityDate}" />
+		</p:panelGrid>
+	</ui:define>
+</ui:composition>
+</html>

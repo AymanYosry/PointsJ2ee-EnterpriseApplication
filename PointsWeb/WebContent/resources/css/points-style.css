@@ -1,0 +1,12 @@
+.ui-dock-top {
+	height: 10px;
+	width: 100px;
+}
+
+.redRow {
+	background-color: #FFAAAA;
+}
+
+.yellowRow {
+	background-color: #FFFF99;
+}

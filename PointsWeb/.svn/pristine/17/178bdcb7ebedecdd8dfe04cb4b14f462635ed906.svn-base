@@ -1,0 +1,135 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:loadBundle basename="resources.application" var="labels" />
+<h:form id="menu_form">
+	<p:graphicImage alt="IXApp" name="images/logo.png" width="100" />
+	<p:outputPanel id="content_side_menu">
+		<p:panelMenu id="side_menu">
+			<p:submenu label="Agent Seller"
+				rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentSellerRoleId)}">
+				<p:menuitem value="#{labels.home}" action="#{agentSellerPurchaseBean.goToIndexPage()}" update="growl content_center" icon="ui-icon-home"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentSellerRoleId)}" />
+				<p:menuitem value="#{labels.fundUserPurchase}" action="#{agentSellerPurchaseBean.goToAddFund()}" update="growl content_center"
+					disabled="#{agentSellerHomeBean.branchId==null}"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentSellerRoleId)}" />
+				<p:menuitem value="#{labels.refundUserPurchase}" action="#{agentSellerPurchaseBean.goToAddReFund()}" update="growl content_center"
+					disabled="#{agentSellerHomeBean.branchId==null}"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentSellerRoleId)}" />
+				<p:menuitem value="#{labels.productExchange}" action="/pages/agent/seller/product_search.xhtml" update="growl content_center"
+					disabled="#{agentSellerHomeBean.branchId==null}"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentSellerRoleId)}" />
+				<p:menuitem value="#{labels.productReExchange}" action="#{agentSellerExchangeBean.goToAddReExchange()}" update="growl content_center"
+					disabled="#{agentSellerHomeBean.branchId==null}"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentSellerRoleId)}" />
+				<p:menuitem value="#{labels.branches}" action="/pages/agent/seller/branch_search.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentSellerRoleId)}" />
+				<p:menuitem value="#{labels.products}" action="/pages/agent/seller/product_search.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentSellerRoleId)}" />
+				<p:menuitem value="#{labels.agent}" action="/pages/agent/seller/agent_details.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentSellerRoleId)}" />
+			</p:submenu>
+			<p:submenu label="Agent Admin"
+				rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}">
+				<p:menuitem value="#{labels.home}" action="/pages/agent/admin/index.xhtml" update="growl content_center" icon="ui-icon-home"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}" />
+				<p:menuitem value="#{labels.messageCenter}" action="/pages/agent/admin/message_search.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}" />
+				<p:menuitem value="#{labels.product}" action="/pages/agent/admin/product_search.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}" />
+				<p:menuitem value="#{labels.promotion}" action="/pages/agent/admin/promotion_search.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}" />
+				<p:menuitem value="#{labels.purchase}" action="/pages/agent/admin/purchase_search.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}" />
+				<p:menuitem value="#{labels.productExchange}" action="/pages/agent/admin/exchange_search.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}" />
+				<p:menuitem value="#{labels.sysInvoice}" action="/pages/agent/admin/invoice_search.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}" />
+				<p:menuitem value="#{labels.sysPayment}" action="/pages/agent/admin/payment_search.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}" />
+				<p:menuitem value="#{labels.branch}" action="/pages/agent/admin/branch_search.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}" />
+				<p:menuitem value="#{labels.employees}" action="/pages/agent/admin/employee_search.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}" />
+				<p:menuitem value="#{labels.contract}" action="/pages/agent/admin/contract_details.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}" />
+				<p:menuitem value="#{labels.updateAgent}" action="/pages/agent/admin/agent_update.xhtml" update="growl content_center"
+					rendered="#{authenticationBean.agentId!=null and (roleSwitcherBean.currentRoleId==entityConstantsBean.role.agentAdminRoleId)}" />
+			</p:submenu>
+			<p:submenu label="System Admin" rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}">
+				<p:menuitem value="#{labels.home}" action="/pages/system/admin/index.xhtml" update="growl content_center" icon="ui-icon-home"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+				<p:menuitem value="#{labels.agent}" action="/pages/system/admin/agent_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+				<p:menuitem value="#{labels.agent} #{labels.employees}" action="/pages/system/admin/agent_employee_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+				<p:menuitem value="#{labels.contract}" action="/pages/system/admin/contract_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+				<p:menuitem value="#{labels.sysPayment}" action="/pages/system/admin/payment_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+				<p:menuitem value="#{labels.product}" action="/pages/system/admin/product_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+				<p:menuitem value="#{labels.promotion}" action="/pages/system/admin/promotion_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+				<p:menuitem value="#{labels.sysInvoice}" action="/pages/system/admin/invoice_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+				<p:menuitem value="#{labels.purchase}" action="/pages/system/admin/purchase_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+				<p:menuitem value="#{labels.productExchange}" action="/pages/system/admin/exchange_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+				<p:menuitem value="#{labels.messageCenter}" action="/pages/system/admin/message_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+				<p:menuitem value="#{labels.employees}" action="/pages/system/admin/employee_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+				<p:menuitem value="#{labels.user}" action="/pages/system/admin/profile_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemAdminRoleId}" />
+			</p:submenu>
+			<p:submenu label="#{labels.others}" rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemSalesRoleId}">
+				<p:menuitem value="#{labels.home}" action="/pages/system/sales/index.xhtml" update="growl content_center" icon="ui-icon-home"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemSalesRoleId}" />
+				<p:menuitem value="#{labels.country}" action="/pages/system/sales/country_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemSalesRoleId}" />
+				<p:menuitem value="#{labels.currency}" action="/pages/system/sales/currency_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemSalesRoleId}" />
+				<p:menuitem value="#{labels.category}" action="/pages/system/sales/category_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemSalesRoleId}" />
+				<p:menuitem value="#{labels.businessFunction}" action="/pages/system/sales/function_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemSalesRoleId}" />
+				<p:menuitem value="#{labels.paymentMethod}" action="/pages/system/sales/payment_method_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemSalesRoleId}" />
+				<p:menuitem value="#{labels.event}" action="/pages/system/sales/event_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemSalesRoleId}" />
+				<p:menuitem value="#{labels.status}" action="/pages/system/sales/status_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemSalesRoleId}" />
+				<p:menuitem value="#{labels.role}" action="/pages/system/sales/role_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.systemSalesRoleId}" />
+			</p:submenu>
+			<p:submenu label="#{labels.user}" rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.userRoleId}">
+				<p:menuitem value="#{labels.home}" action="#{userHomeBean.refreshPageData()}" update="growl content_center" icon="ui-icon-home"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.userRoleId }" />
+				<p:menuitem value="#{labels.agent}" action="/pages/user/agent_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.userRoleId }" />
+				<p:menuitem value="#{labels.branches}" action="/pages/user/branch_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.userRoleId }" />
+				<p:menuitem value="#{labels.products}" action="/pages/user/product_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.userRoleId }" />
+				<p:menuitem value="#{labels.promotions}" action="/pages/user/promotion_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.userRoleId }" />
+				<p:menuitem value="#{labels.purchase}" action="/pages/user/purchase_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.userRoleId }" />
+				<p:menuitem value="#{labels.productExchange}" action="/pages/user/exchange_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.userRoleId }" />
+				<p:menuitem value="#{labels.point}" action="/pages/user/point_search.xhtml" update="growl content_center"
+					rendered="#{roleSwitcherBean.currentRoleId==entityConstantsBean.role.userRoleId }" />
+			</p:submenu>
+			<!-- <p:submenu label="change login">
+				<p:menuitem value="Agent Admin" action="#{tempLoginBean.setLoginToAgentAdmin()}" update="growl content_center" />
+				<p:menuitem value="Agent Seller" action="#{tempLoginBean.setLoginToAgentSeller()}" update="growl content_center" />
+				<p:menuitem value="System Admin" action="#{tempLoginBean.setLoginToSystemAdmin()}" update="growl content_center" />
+				<p:menuitem value="System Salles" action="#{tempLoginBean.setLoginToSystemSales()}" update="growl content_center" />
+				<p:menuitem value="User" action="#{tempLoginBean.setLoginToUser()}" update="growl content_center" />
+			</p:submenu> -->
+		</p:panelMenu>
+	</p:outputPanel>
+</h:form>
+</html>

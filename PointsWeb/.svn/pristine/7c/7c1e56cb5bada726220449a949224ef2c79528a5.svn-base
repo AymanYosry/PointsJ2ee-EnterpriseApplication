@@ -1,0 +1,8 @@
+.ui-dock-top {
+	height: 10px;
+	width: 100px;
+}
+
+.redRow {
+	color: #FF0000;
+}

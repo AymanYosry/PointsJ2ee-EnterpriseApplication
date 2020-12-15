@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:composite="http://xmlns.jcp.org/jsf/composite" xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<composite:interface>
+	<composite:attribute name="table_bean" required="false" />
+</composite:interface>
+<composite:implementation>
+
+
+	<p:tabView id="tabView">
+		<p:ajax event="tabChange" listener="#{cc.attrs.table_bean.onTabChange}" update="table_form,growl,add_panel" />
+		<p:tab id="search_tab" title="#{labels.search}">
+
+			<h:form id="table_form">
+				<p:panelGrid id="form_panel" columns="1">
+					<p:panelGrid columns="2" styleClass="ui-noborder">
+						<p:splitButton value="#{cc.attrs.table_bean.parentPageTitle}" action="#{cc.attrs.table_bean.goToParentPage}" ajax="false"
+							rendered="#{cc.attrs.table_bean.parentPage!=null}">
+							<p:menuitem value="#{labels.remove}" actionListener="#{cc.attrs.table_bean.resetParentPage}" ajax="false" icon="ui-icon-close" />
+						</p:splitButton>
+						<ui:insert name="search_panel">
+
+						</ui:insert>
+					</p:panelGrid>
+					<p:row id="data_row">
+						<!-- sortBy="#{cc.attrs.table_bean.columns.get(0).linkableProperty==null?tableDataRow.get(cc.attrs.table_bean.columns.get(0).property):tableDataRow.get(cc.attrs.table_bean.columns.get(0).property).get(cc.attrs.table_bean.columns.get(0).linkableProperty)}" 
+						sortOrder="#{cc.attrs.table_bean.defaultSortOrder}"-->
+						<p:dataTable id="search_table" rowIndexVar="row_index" var="tableDataRow" value="#{cc.attrs.table_bean.tableData}"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="10,20,30"
+							paginator="true" rows="10" style="margin-bottom:20px" rowStyleClass="#{cc.attrs.table_bean.getRowStyleClass(tableDataRow)}"
+							resizableColumns="true" >
+
+							<f:facet name="{Exporters}">
+								<h:commandLink>
+									<p:graphicImage alt="xls" name="images/excel.png" width="24" />
+									<p:dataExporter type="xls" target="tbl" fileName="cars" />
+								</h:commandLink>
+
+								<h:commandLink>
+									<p:graphicImage alt="pdf" name="images/pdf.png" width="24" />
+									<p:dataExporter type="pdf" target="tbl" fileName="cars" />
+								</h:commandLink>
+								<p:outputPanel>
+
+								</p:outputPanel>
+							</f:facet>
+							<p:column width="10">
+								<h:outputText value="#{row_index + 1}" />
+							</p:column>
+							<ui:insert name="more_pre_columns" />
+							<p:columns value="#{cc.attrs.table_bean.columns}" var="column"
+								sortBy="#{column.linkableProperty==null?tableDataRow.get(column.property):tableDataRow.get(column.property).get(column.linkableProperty)}"
+								sortMode="multiple">
+								<f:facet name="header">#{column.linkableProperty==null?labels.get(column.property):labels.get(column.linkableProperty)}</f:facet>
+								<h:outputText value="#{tableDataRow.get(column.property)}" rendered="#{column.linkableProperty==null}" />
+								<p:commandLink rendered="#{column.linkableProperty!=null}"
+									actionListener="#{cc.attrs.table_bean.viewDetails(tableDataRow,column.linkableProperty)}" ajax="true">
+									<h:outputText value="#{tableDataRow.get(column.property).get(column.linkableProperty)}" />
+								</p:commandLink>
+								<p:commandLink rendered="#{column.linkableList!=null}" action="#{cc.attrs.table_bean.viewListDetails(tableDataRow,column.linkableList)}"
+									ajax="true">
+									<h:outputText value="#{labels.get(column.property)}" />
+								</p:commandLink>
+							</p:columns>
+							<ui:insert name="more_post_columns" />
+							<p:column style="width:70px;text-align: center" rendered="${cc.attrs.table_bean.hasMoreDetails or cc.attrs.table_bean.canUpdate}">
+								<p:panelGrid styleClass="ui-noborder" columns="3">
+									<p:commandLink ajax="true" actionListener="#{cc.attrs.table_bean.viewDetails(tableDataRow)}" icon="ui-icon-search"
+										title="#{labels.viewDetails}" rendered="${cc.attrs.table_bean.hasMoreDetails}">
+										<p:graphicImage alt="xls" name="images/icon/view_details.png" width="24" />
+										<p:ajax event="dialogReturn" update="growl search_table" listener="#{cc.attrs.table_bean.postUpdateDialog}" />
+									</p:commandLink>
+									<p:commandLink ajax="true" actionListener="#{cc.attrs.table_bean.showForUpdate(tableDataRow)}" icon="ui-icon-search" title="#{labels.update}"
+										rendered="${cc.attrs.table_bean.canUpdate}">
+										<p:graphicImage alt="xls" name="images/icon/edit.png" width="24" />
+										<p:ajax event="dialogReturn" update="growl search_table" listener="#{cc.attrs.table_bean.postUpdateDialog}" />
+									</p:commandLink>
+								</p:panelGrid>
+							</p:column>
+						</p:dataTable>
+					</p:row>
+				</p:panelGrid>
+			</h:form>
+
+		</p:tab>
+		<p:tab title="#{labels.addNew}" rendered="${cc.attrs.table_bean.canAdd}">
+			<p:panel id="add_panel">
+				<ui:insert name="add_new_panel">
+
+				</ui:insert>
+			</p:panel>
+		</p:tab>
+	</p:tabView>
+</composite:implementation>
+</html>
+
+
+

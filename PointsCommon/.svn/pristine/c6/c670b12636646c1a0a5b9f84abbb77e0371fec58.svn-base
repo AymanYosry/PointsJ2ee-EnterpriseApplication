@@ -1,0 +1,322 @@
+/**
+ * 
+ */
+package com.ewhale.points.common.security.test;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.GeneralSecurityException;
+import java.security.Key;
+import java.security.KeyStore;
+
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.cert.X509Certificate;
+
+import com.ewhale.points.common.exception.AuthenticationSecurityException;
+//import com.ewhale.points.common.security.SecurityBuilder;
+import com.ewhale.points.common.security.base64.BASE64Decoder;
+import com.ewhale.points.common.security.base64.BASE64Encoder;
+//import com.ewhale.points.common.security.cms.CMSDataSigner;
+//import com.ewhale.points.common.security.cms.CMSDataVerifier;
+//import com.ewhale.points.common.security.cms.android.CMSKeyGenerator;
+//import com.ewhale.points.common.security.rsa.RSADecryption;
+//import com.ewhale.points.common.security.rsa.RSAEncryption;
+//import com.ewhale.points.common.security.rsa.RSAKeyGenerator;
+import com.ewhale.points.common.util.AppConstants;
+
+//import org.bouncycastle.cms.CMSException;
+//import org.bouncycastle.operator.OperatorCreationException;
+
+//import com.ewhale.common.security.CMSSignedDataSigner;
+//import com.ewhale.common.security.CMSSignedDataVerifier;
+//import com.ewhale.common.security.RSAEncryption;
+//import com.ewhale.common.security.RSAKeyGenerator;
+
+/**
+ * @author Ayman Yosry
+ * @Date 01/07/2015
+ */
+public class SecurityTest
+{
+	private final String KEY_PWD = AppConstants.SecurityConstants.AUTH_PRIVATEKEY_PWD;
+	private final String CERT_ALIAS = AppConstants.SecurityConstants.AUTH_CERT_ALIAS;
+	private final String KEYSTORE_INSTANCE = AppConstants.SecurityConstants.KEYSTORE_INSTANCE;
+	private final String KEYSTORE_PWD = AppConstants.SecurityConstants.AUTH_KEYSTORE_PWD;
+
+	public static void testBase64Encode() throws IOException
+	{
+		BASE64Encoder b64enc = new BASE64Encoder();
+		BASE64Decoder b64dec = new BASE64Decoder();
+		String tst= "my data";
+		
+		String b64encStr = b64enc.encode(tst.getBytes());
+		System.out.println("B64 ENC====> " + b64encStr);
+	
+		byte[] data = b64dec.decodeBuffer(b64encStr);
+		String decData = new String (data);
+		System.out.println("B64 DECC====> " + decData);
+
+	}
+	public static void testBase64Encode2() throws IOException
+	{
+		BASE64Encoder b64enc = new BASE64Encoder();
+		BASE64Decoder b64dec = new BASE64Decoder();
+		String tst= "my data@123#45r$mjh^jfj kol";
+		
+		byte[] data = b64dec.decodeBuffer(tst);
+//		String decData = new String (data);
+		System.out.println("B64 DECC====> " + tst);
+		
+		String b64encStr = b64enc.encode(data);
+		System.out.println("B64 ENCC====> " + b64encStr);
+	
+		
+
+	}
+//	public static void testEncDecWithCert()
+//			throws GeneralSecurityException, IOException, AuthenticationSecurityException
+//	{
+////		SecurityTest test = new SecurityTest();
+////		PrivateKey pvkey = test.getPrivateKey();
+////		PublicKey pukey = test.getPublicKey();
+//
+////		BASE64Encoder b64 = new BASE64Encoder();
+////		String privateKeySTR = b64.encode(pvkey.getEncoded());
+////		String publicKeySTR = b64.encode(pukey.getEncoded());
+////		System.out.println("PRIVATE ---> " + privateKeySTR);
+////		System.out.println("PUBLIC  ---> " + publicKeySTR);
+//
+//		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ !!!!!!");
+//		String inputData = "Ayman";
+//
+////		RSAEncryption enc = new RSAEncryption(new RSAKeyGenerator());
+//		String encryptedData = SecurityBuilder.encrypt(inputData);
+//		// System.out.println(" ============== "+ encryptedData);
+//
+////		RSADecryption dec = new RSADecryption(new RSAKeyGenerator());
+//		String decData = SecurityBuilder.decrypt(encryptedData);
+//
+//		System.out.println("\nDEC ==============" + decData + "====");
+//
+//	}
+
+//	public KeyStore getKeystore(char[] password) throws GeneralSecurityException, IOException
+//	{
+//		KeyStore keystore = null;
+//		String KEYSTORE_FILE = "/com/ewhale/points/common/security/PointsKeystore.jks";
+//
+//		if (keystore == null)
+//		{
+//			// preferred keystore type impl. available in the env
+//			keystore = KeyStore.getInstance(KEYSTORE_INSTANCE);
+//			InputStream input = CMSDataSigner.class.getResourceAsStream(KEYSTORE_FILE);
+//			try
+//			{
+//				keystore.load(input, password);
+//			}
+//			finally
+//			{
+//				if (input != null)
+//				{
+//					input.close();
+//				}
+//			}
+//		}
+//		return keystore;
+//	}
+
+//	public KeyStore getTrustKeystore(char[] password) throws GeneralSecurityException, IOException
+//	{
+//		KeyStore keystore = null;
+//		String KEYSTORE_FILE = "/com/ewhale/points/common/security/PointsTrustKeystore.jks";
+//
+//		if (keystore == null)
+//		{
+//			// preferred keystore type impl. available in the env
+//			keystore = KeyStore.getInstance(KEYSTORE_INSTANCE);
+//			InputStream input = CMSDataSigner.class.getResourceAsStream(KEYSTORE_FILE);
+//			try
+//			{
+//				keystore.load(input, password);
+//			}
+//			finally
+//			{
+//				if (input != null)
+//				{
+//					input.close();
+//				}
+//			}
+//		}
+//		return keystore;
+//	}
+
+//	public PrivateKey getPrivateKey() throws GeneralSecurityException, IOException
+//	{
+//		KeyStore keystore = getKeystore(KEYSTORE_PWD.toCharArray());
+//		PrivateKey privateKey = (PrivateKey) keystore.getKey(CERT_ALIAS, this.KEY_PWD.toCharArray());
+//
+//		return privateKey;
+//	}
+//
+//	public PublicKey getPublicKey() throws GeneralSecurityException, IOException
+//	{
+//		KeyStore keystore = getTrustKeystore(KEYSTORE_PWD.toCharArray());
+//		X509Certificate cert = (X509Certificate) keystore.getCertificate(CERT_ALIAS);
+//		PublicKey publicKey = cert.getPublicKey();
+//
+//		return publicKey;
+//	}
+
+	/**
+	 * First way to Sign and Verify
+	 * 
+	 * @throws AuthenticationSecurityException
+	 */
+	public static void testSignAndVerifyFirst() throws AuthenticationSecurityException
+	{
+//		// Sign Message
+//		String dataToBeSigned = "Welcome in Payhub";
+//		String signedData = null;
+//		signedData = SecurityBuilder.sign(dataToBeSigned);
+//
+//		// Verify Message
+//		CMSDataVerifier rsaVerify = new CMSDataVerifier();
+//		boolean isVerified = false;
+//
+//		isVerified = rsaVerify.verify(signedData);
+//		if (isVerified)
+//		{
+//			// System.out.println("Signature verified");
+//		}
+//		else
+//		{
+//			// System.out.println("Signature verification failed");
+//		}
+//
+//		// System.out.println("\n");
+	}
+
+	/**
+	 * Second way to Sign and Verify
+	 * 
+	 * @throws AuthenticationSecurityException
+	 */
+//	public static void testSignAndVerifySecond() throws AuthenticationSecurityException
+//	{
+//		// Sign Message
+//		CMSDataSigner rsaSign = new CMSDataSigner();
+//		String dataToBeSigned = "Welcome in Payhub";
+//		String signedData = null;
+//
+//		signedData = rsaSign.sign(dataToBeSigned);
+//
+//		// System.out.println("\n");
+//
+//		// Verify Message
+//		CMSDataVerifier rsaVerify = new CMSDataVerifier();
+//		String dataToBeVerified = "Welcome in Payhub";
+//		boolean isVerified = false;
+//
+//		isVerified = rsaVerify.verify(dataToBeVerified, signedData);
+//		if (isVerified)
+//		{
+//			// System.out.println("Signature verified");
+//		}
+//		else
+//		{
+//			// System.out.println("Signature verification failed");
+//		}
+//
+//		// System.out.println("\n");
+//	}
+//
+//	public static void testSignAndVerifyThree() throws AuthenticationSecurityException
+//	{
+//		// Sign Message
+//		String dataToBeSigned = "Ayman";// getDBData();
+//		String signedData = null;
+//		signedData = SecurityBuilder.sign(dataToBeSigned);
+//		// System.out.println("\n");
+//
+//		// Verify Message
+//		String dataToBeVerified = "Ayman";// getLoginData();
+//		boolean isVerified = false;
+//		isVerified = SecurityBuilder.verify(dataToBeVerified, signedData);
+//
+//		if (isVerified) System.out.println("Signature verified");
+//		else System.out.println("Signature verification failed");
+//
+//		System.out.println("\n");
+//	}
+
+//	private static String getLoginData() throws AuthenticationSecurityException
+//	{
+//		/// Login
+//		CMSKeyGenerator rsaKeysLogin = new KeyGenerator();
+//		String inputDataLogin = "Ayman";
+//		RSAEncryption encLogin = new RSAEncryption(rsaKeysLogin);
+//		String encDataLogin = encLogin.encrypt(inputDataLogin, rsaKeysLogin.getPublicKey());
+//		return encDataLogin;
+//	}
+//
+//	private static String getDBData() throws AuthenticationSecurityException
+//	{
+//		RSAKeyGenerator rsaKeysDB = new RSAKeyGenerator();
+//		String inputData = "Ayman";
+//		RSAEncryption encDB = new RSAEncryption(rsaKeysDB);
+//		String encDataDB = encDB.encrypt(inputData, rsaKeysDB.getPublicKey());
+//		return encDataDB;
+//	}
+
+	public static void main(String[] args)
+	{
+		// First way to Sign and Verify
+		// //System.out.println("------------------- First way to Sign and
+		// Verify ---------------------");
+		// RSADigSigTest.testSignAndVerifyFirst();
+
+		// Second way to Sign and Verify
+		// System.out.println("------------------- Third way to Sign and Verify
+		// ---------------------");
+		// RSADigSigTest.testSignAndVerifySecond();
+		try
+		{
+			testBase64Encode2();
+		}
+		catch (IOException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+//		try
+//		{
+//			SecurityTest.testSignAndVerifyThree();
+//		}
+//		catch (AuthenticationSecurityException e)
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} // stSignAndVerifySecond();
+//			/////////////////////////////////////////////////////////////////////////////
+//		try
+//		{
+//			testEncDecWithCert();
+//		}
+//		catch (GeneralSecurityException e)
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		catch (IOException e)
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		catch (AuthenticationSecurityException e)
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	}
+}

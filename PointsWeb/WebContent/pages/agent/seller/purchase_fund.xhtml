@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<ui:composition template="/resources/templates/common/layout_agent_seller.xhtml">
+	<ui:define name="content_center">
+		<h:form>
+			<p:messages id="messages" />
+			<p:outputPanel id="purchase">
+				<p:panelGrid columns="2" styleClass="ui-noborder" rendered="#{agentSellerPurchaseBean.qrCode==null}">
+					<p:outputLabel for="invoiceNumber" value="#{labels.agentInvoiceNumber}" />
+					<p:inputText id="invoiceNumber" value="#{agentSellerPurchaseBean.agentInvoiceNumber}" required="true" />
+					<p:outputLabel for="invoiceValue" value="#{labels.agentInvoiceValue}" />
+					<p:inputText id="invoiceValue" value="#{agentSellerPurchaseBean.agentInvoiceValue}" required="true" />
+					<p:outputLabel for="telephoneNumber" value="#{labels.mobile}" />
+					<p:inputText id="telephoneNumber" value="#{agentSellerPurchaseBean.mobile}" required="true" />
+					<p:commandButton value="#{labels.add}" action="#{agentSellerPurchaseBean.fundUserPurchase()}" update="purchase" disabled="#{agentSellerHomeBean.branchId==null}"/>
+				</p:panelGrid>
+				<p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{agentSellerPurchaseBean.qrCode!=null}">
+					<p:panelGrid id="purchaseData" columns="1" styleClass="ui-noborder">
+						<p:outputLabel value="${labels.thanks} ${agentSellerPurchaseBean.profileFullName}" />
+						<p:outputLabel value="${agentSellerPurchaseBean.tradeMark} ${agentSellerPurchaseBean.branchName}" />
+						<p:outputLabel value="${labels.sysInvoice} : ${agentSellerPurchaseBean.agentInvoiceNumber} - ${labels.invoiceValue} : ${agentSellerPurchaseBean.agentInvoiceValue}" />
+						<p:outputLabel value="${labels.pleaseScan}" />
+						<p:barcode style="text-align: center" value="#{agentSellerPurchaseBean.qrCode}" type="qr" />
+					</p:panelGrid>
+					<p:panelGrid columns="2">
+						<p:commandButton value="${labels.print}" icon="ui-icon-print" resetValues="true">
+							<p:ajax listener="#{agentSellerPurchaseBean.resetUserPurchase()}" update="purchase" />
+							<p:printer target="purchaseData" />
+						</p:commandButton>
+						<p:commandButton value="#{labels.reset}" action="#{agentSellerPurchaseBean.resetUserPurchase()}" resetValues="true"
+							update="purchase" />
+					</p:panelGrid>
+				</p:panelGrid>
+			</p:outputPanel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp">
+
+
+
+<ui:composition template="/resources/templates/common/layout.xhtml">
+	<ui:define name="add_new_panel">
+		<ui:include src="agent_add.xhtml" />
+	</ui:define>
+
+
+	<ui:define name="search_panel">
+		<p:panelGrid columns="6" styleClass="ui-noborder">
+			<p:outputLabel for="tradeMark" value="#{labels.tradeMark}" />
+			<p:inputText id="tradeMark" value="#{sysAdminAgentBean.tradeMarkSe}" />
+			<p:outputLabel for="startContractDateFrom" value="#{labels.from} #{labels.contractDate}" />
+			<p:calendar id="startContractDateFrom" value="#{sysAdminAgentBean.startContractDate_From}" pattern="dd-MM-yyyy" />
+			<p:outputLabel for="startContractDateTo" value="#{labels.to} #{labels.contractDate}" />
+			<p:calendar id="startContractDateTo" value="#{sysAdminAgentBean.startContractDate_To}" pattern="dd-MM-yyyy" />
+
+			<p:outputLabel for="insertDate_From" value="#{labels.agentInsertDate_From}" />
+			<p:calendar id="insertDate_From" value="#{sysAdminAgentBean.insertDate_From}" pattern="dd-MM-yyyy" />
+			<p:outputLabel for="status" value="#{labels.status}" />
+			<p:selectOneMenu id="status" value="#{sysAdminAgentBean.statusIdSe}">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItems value="#{sysAdminAgentBean.statusesList}" var="status" itemLabel="#{status.get(entityConstantsBean.status.statusName)}"
+					itemValue="#{status.get(entityConstantsBean.status.statusId)}" />
+			</p:selectOneMenu>
+			<p:outputLabel for="country" value="#{labels.country}" />
+			<p:selectOneMenu id="country" value="#{sysAdminAgentBean.countryIdSe}">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItems value="#{sysAdminAgentBean.countriesList}" var="country" itemLabel="#{country.get(entityConstantsBean.country.countryName)}"
+					itemValue="#{country.get(entityConstantsBean.country.countryId)}" />
+			</p:selectOneMenu>
+			
+			
+			<p:commandButton value="#{labels.search}" id="search" update="growl search_table" actionListener="#{sysAdminAgentBean.viewAgentsList()}"
+				 />
+		</p:panelGrid>
+
+	</ui:define>
+	<ui:define name="content_center">
+		<em:search_component table_bean="#{sysAdminAgentBean}"></em:search_component>
+	</ui:define>
+
+	<ui:define name="more_pre_columns">
+		<p:column style="width:70px;text-align: center">
+			<!-- 			<p:graphicImage alt="logo not found" value="#{imagesBean.logoImage}" width="50px" height="50px">
+				<f:param name="entityId" value="#{tableDataRow.get(entityConstantsBean.agent.agentId)}" />
+			</p:graphicImage> -->
+			<h:graphicImage url="#{'data:image/jpeg;charset=utf-8;base64, '}#{tableDataRow.get(entityConstantsBean.agent.logo)}" width="50px" height="50px"
+				alt="logo not found" />
+
+		</p:column>
+	</ui:define>
+</ui:composition>
+
+</html>
+

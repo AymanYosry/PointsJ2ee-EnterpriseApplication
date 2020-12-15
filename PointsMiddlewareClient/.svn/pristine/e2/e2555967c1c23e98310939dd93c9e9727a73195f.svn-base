@@ -1,0 +1,5 @@
+package com.ewhale.points.controller.facade;
+
+public interface AgentFacade  extends AbsoluteFacade{
+
+}

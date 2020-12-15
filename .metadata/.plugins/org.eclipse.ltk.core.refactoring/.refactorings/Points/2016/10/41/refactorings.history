@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;jboss-deployment-structure.xml&apos; to &apos;META-INF&apos;" description="Move &apos;jboss-deployment-structure.xml&apos; to &apos;META-INF&apos;" destination="META-INF" element1="/PointsWeb/WebContent/WEB-INF/jboss-deployment-structure.xml" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1475488359539" updateReferences="true"/>
+</session>

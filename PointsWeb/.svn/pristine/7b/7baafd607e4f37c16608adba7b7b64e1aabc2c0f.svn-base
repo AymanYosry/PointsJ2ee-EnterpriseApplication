@@ -1,0 +1,45 @@
+@page {
+	size: 8cm 8cm;
+	margin: 1pt 1pt 1pt;
+}
+
+body {
+	background: #F00;
+	color: #F00;
+	font-size: 20pt;
+	border: thin;
+}
+#menu {
+	display: none;
+}
+
+#wrapper, #content {
+	width: auto;
+	margin: 0 5%;
+	padding: 0;
+	border: 0;
+	float: none;
+	color: black;
+	background: transparent none;
+}
+
+div#content {
+	margin-left: 10%;
+	padding-top: 1em;
+	border-top: 1px solid #930;
+}
+
+div#mast {
+	margin-bottom: -8px;
+}
+
+div#mast img {
+	vertical-align: bottom;
+}
+
+a:link, a:visited {
+	color: #520;
+	background: transparent;
+	font-weight: bold;
+	text-decoration: underline;
+}

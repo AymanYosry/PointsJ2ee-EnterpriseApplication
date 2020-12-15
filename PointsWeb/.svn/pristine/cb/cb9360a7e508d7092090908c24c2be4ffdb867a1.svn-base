@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" type="text/css" media="print" href="print.css" />
+</h:head>
+
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form>
+			<p:panelGrid  styleClass="ui-noborder" id="purchaseData" columns="1">
+				<p:outputLabel value="${labels.thanks} ${agentSellerPurchaseBean.profileFullName}" />
+				<p:outputLabel value="${agentSellerPurchaseBean.tradeMark}" />
+				<p:outputLabel value="${agentSellerPurchaseBean.branchName}" />
+				<p:outputLabel value="${labels.sysInvoice} : ${agentSellerPurchaseBean.agentInvoiceNumber} - ${agentSellerPurchaseBean.agentInvoiceValue}" />
+				<p:outputLabel value="${labels.pleaseScan}" />
+				<p:barcode style="text-align: center" value="#{agentSellerPurchaseBean.qrCode}" type="qr"/>
+			</p:panelGrid>
+			<p:commandButton value="${labels.print}" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+				<p:printer target="purchaseData" />
+			</p:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

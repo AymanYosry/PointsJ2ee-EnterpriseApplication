@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:form>
+	<p:panelGrid styleClass="ui-noborder" columns="2" cellpadding="5">
+		<p:outputLabel for="branchName" value="#{labels.branchName}" />
+		<p:inputText id="branchName" value="#{agentAdminAgentBranchBean.branchName}" required="true" />
+		<p:outputLabel for="branchTel" value="#{labels.branchTel}" />
+		<p:inputText id="branchTel" value="#{agentAdminAgentBranchBean.tel}" required="true" />
+		<!-- <p:outputLabel for="countryId" value="#{labels.country}" />
+		<p:selectOneMenu id="countryId" value="#{agentAdminAgentBranchBean.countryId}">
+				<f:selectItem itemLabel="#{labels.selectOne}"/>
+				<f:selectItems value="#{agentAdminAgentBranchBean.countriesList}" var="country" itemLabel="#{country.get(entityConstantsBean.country.countryName)}"
+					itemValue="#{country.get(entityConstantsBean.country.countryId)}" />
+				<f:ajax listener="#{agentAdminAgentBranchBean.loadStatesList()}" render="stateId" />
+			</p:selectOneMenu> -->
+		<!-- 		<p:outputLabel for="country" value="#{labels.country}" />
+		<p:selectOneMenu id="country" value="agentAdminAgentBranchBean.countryId}" required="true">
+			<f:selectItem itemLabel="#{labels.selectOne}" itemValue="" />
+			<f:selectItems value="#{agentAdminAgentBranchBean.countriesList}" var="country" itemLabel="#{country.get(entityConstantsBean.country.countryName)}"
+				itemValue="#{country.get(entityConstantsBean.country.countryId)}" />
+			<f:ajax listener="#{agentAdminAgentBranchBean.loadStatesList()}" render="stateId" />
+		</p:selectOneMenu> -->
+		<p:outputLabel for="stateId" value="#{labels.state}" />
+		<p:selectOneMenu id="stateId" value="#{agentAdminAgentBranchBean.stateId}">
+			<f:selectItem itemLabel="#{labels.selectOne}" />
+			<f:selectItems value="#{agentAdminAgentBranchBean.statesList}" var="state" itemLabel="#{state.get(entityConstantsBean.state.stateName)}"
+				itemValue="#{state.get(entityConstantsBean.state.stateId)}" />
+		</p:selectOneMenu>
+		<p:outputLabel for="address" value="#{labels.address}" />
+		<p:inputText id="address" value="#{agentAdminAgentBranchBean.address}" required="true" />
+		<p:panelGrid styleClass="ui-noborder" columns="1">
+			<f:facet name="header">
+				<p:outputLabel value="#{labels.branchLocationHeader}" />
+			</f:facet>
+			<p:inputText id="locationLatitude" value="#{agentAdminAgentBranchBean.locationLatitude}" required="true" title="#{labels.locationLatitude}" />
+			<p:inputText id="locationLongitude" value="#{agentAdminAgentBranchBean.locationLongitude}" required="true" title="#{labels.locationLongitude}" />
+			<p:gmap id="gmap" center="30.045, 31.3165" zoom="12" type="ROADMAP" style="width:500px;height:350px">
+				<p:ajax event="pointSelect" listener="#{agentAdminAgentBranchBean.onPointSelect}" update="locationLatitude locationLongitude" />
+			</p:gmap>
+		</p:panelGrid>
+		<p:outputLabel value="" />
+		<p:commandButton value="#{labels.add}" action="#{agentAdminAgentBranchBean.addAgentBranch()}" />
+	</p:panelGrid>
+</h:form>
+</html>

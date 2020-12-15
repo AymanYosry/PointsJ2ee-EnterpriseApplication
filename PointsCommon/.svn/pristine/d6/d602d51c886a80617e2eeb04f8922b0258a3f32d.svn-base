@@ -1,0 +1,80 @@
+package com.ewhale.points.common.security.rsa;
+
+import java.io.Serializable;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.SecureRandom;
+
+import com.ewhale.points.common.exception.AuthenticationSecurityException;
+import com.ewhale.points.common.security.SecurityBuilder;
+import com.ewhale.points.common.util.AppConstants;
+
+/**
+ * @author Ayman Yosry
+ */
+public class KeyGenerator implements Serializable
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String keystorePassword = null;
+	String keystoreFile = null;
+
+	public KeyGenerator(){}
+
+	/**
+	 * 
+	 * @param keystoreFile
+	 * @param password
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public KeyPair getKeyPair() throws AuthenticationSecurityException
+	{
+		KeyPair keyPair = null;
+		try
+		{
+			KeyPairGenerator generator = KeyPairGenerator.getInstance(AppConstants.SecurityConstants.RSA_ALGORITHM);
+			SecureRandom random = SecurityBuilder.createFixedRandom();
+			generator.initialize(AppConstants.KEY_SIZE, random);
+			keyPair = generator.generateKeyPair();
+		}
+		catch (NoSuchAlgorithmException e)
+		{
+			throw new AuthenticationSecurityException("Problem in Loading Key Algorithm ...", e);
+		}
+
+		return keyPair;
+	}
+
+	/**
+	 * 
+	 * @param certificateAlias
+	 * @param privatekeyPassword
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public PrivateKey getPrivateKey() throws AuthenticationSecurityException
+	{
+		KeyPair keyPair = getKeyPair();
+		PrivateKey privateKey = keyPair.getPrivate();
+		return privateKey;
+	}
+
+	/**
+	 * 
+	 * @param certificateAlias
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public PublicKey getPublicKey() throws AuthenticationSecurityException
+	{
+		KeyPair keyPair = getKeyPair();
+		PublicKey publicKey = keyPair.getPublic();
+		return publicKey;
+	}
+}

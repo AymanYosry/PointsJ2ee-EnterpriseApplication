@@ -1,0 +1,213 @@
+package com.ewhale.points.common.security;
+
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+
+import com.ewhale.points.common.exception.AuthenticationSecurityException;
+import com.ewhale.points.common.security.cms.DataDecryptor;
+import com.ewhale.points.common.security.cms.DataEncryptor;
+import com.ewhale.points.common.security.cms.DataSigner;
+import com.ewhale.points.common.security.cms.DataVerifier;
+import com.ewhale.points.common.util.AppConstants;
+
+class CMSSecurityBuilder extends SecurityBuilder implements Serializable
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	public CMSSecurityBuilder()
+	{
+		System.out.println("INSIDE ==> "+this.getClass().getSimpleName());
+	}
+
+	/**
+	 * Sign Data
+	 * 
+	 * @param data
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public String sign(String data) throws AuthenticationSecurityException
+	{
+		DataSigner rsaSign = new DataSigner();
+		String signature = rsaSign.sign(data);
+		return signature;
+	}
+
+	/**
+	 * Verify Data
+	 * 
+	 * @param data
+	 * @param signature
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public boolean verify(String data, String signature) throws AuthenticationSecurityException
+	{
+		DataVerifier rsaVerify = new DataVerifier();
+		boolean isVerified = rsaVerify.verify(data, signature);
+		return isVerified;
+	}
+
+	/**
+	 * @param password
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public String encrypt(String password) throws AuthenticationSecurityException
+	{
+		DataEncryptor enc = new DataEncryptor();
+		password = toHex(hashSHA256(password));
+		String encryptedPassword = enc.encrypt(password);
+		return encryptedPassword;
+	}
+
+	/**
+	 * @param password
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public String decrypt(String password) throws AuthenticationSecurityException
+	{
+		DataDecryptor dec = new DataDecryptor();
+		String decryptedPassword = dec.decrypt(password);
+		return decryptedPassword;
+	}
+	
+	/**
+	 * @param password
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public String authenticate(String password) throws AuthenticationSecurityException
+	{
+		password = toHex(hashSHA512(password));
+		password = encrypt(password);
+		return password;
+	}
+
+	/**
+	 * @param password
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public String passwordHashing(String password) throws AuthenticationSecurityException
+	{
+		String hashedPassword = toHex(hashSHA512(password));
+		hashedPassword = toHex(hashSHA256(hashedPassword));
+		return hashedPassword;
+	}
+
+	/**
+	 * @param data
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public byte[] hashSHA256(String data) throws AuthenticationSecurityException
+	{
+		byte[] hashedData;
+		hashedData = hash(data, AppConstants.SecurityConstants.SHA256_ALGORITHM);
+		return hashedData;
+	}
+
+	/**
+	 * @param data
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public byte[] hashSHA512(String data) throws AuthenticationSecurityException
+	{
+		byte[] hashedData;
+		hashedData = hash(data, AppConstants.SecurityConstants.SHA512_ALGORITHM);
+		return hashedData;
+	}
+
+	/**
+	 * @param data
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	private static byte[] hash(String data, String hashAlgorithm) throws AuthenticationSecurityException
+	{
+		byte[] hashedData;
+		try
+		{
+			hashedData = MessageDigest.getInstance(hashAlgorithm)
+					.digest(data.getBytes(AppConstants.SecurityConstants.ENCODE_TYPE_8));
+		}
+		catch (NoSuchAlgorithmException | UnsupportedEncodingException e)
+		{
+			throw new AuthenticationSecurityException(e);
+		}
+		return hashedData;
+	}
+
+	/**
+	 * 
+	 * @param hash
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public String toHex(byte[] hash) throws AuthenticationSecurityException
+	{
+		String hashedData = "";
+		try
+		{
+			StringBuffer hexString = new StringBuffer();
+			for (int i = 0; i < hash.length; i++)
+			{
+				String hex = Integer.toHexString(0xff & hash[i]);
+				if (hex.length() == 1) hexString.append('0');
+				hexString.append(hex);
+			}
+			hashedData = hexString.toString();
+		}
+		catch (Exception e)
+		{
+			throw new AuthenticationSecurityException(e);
+		}
+		return hashedData;
+	}
+
+	/**
+	 * Convert hex string to byte array
+	 * 
+	 * @param data
+	 *            input string data
+	 * @return bytes
+	 */
+	public static byte[] fromHex(String data)
+	{
+		int len = data.length();
+		byte[] results = new byte[len / 2];
+		for (int i = 0; i < len; i += 2)
+		{
+			results[i / 2] = (byte) ((Character.digit(data.charAt(i), 16) << 4)
+					+ Character.digit(data.charAt(i + 1), 16));
+		}
+		return results;
+	}
+
+	public String getRandomPassword() throws AuthenticationSecurityException
+	{
+		SecureRandom random = createRandom();
+		String password = new BigInteger(AppConstants.SecurityConstants.PASSWORD_BITS, random)
+				.toString(AppConstants.SecurityConstants.PASSWORD_RADIX);
+		return password;
+	}
+
+	public String getRandomNumber(int numberOfDigits)
+	{
+		SecureRandom random = new SecureRandom();
+		int num = random.nextInt(numberOfDigits * 10);
+		String formatted = String.format("%05d", num);
+
+		return formatted;
+	}
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:form  enctype="multipart/form-data">
+	<p:panelGrid  styleClass="ui-noborder" columns="2" cellpadding="5">
+		<p:outputLabel for="productName" value="#{labels.productName}" />
+		<p:inputText id="productName" value="#{agentAdminAgentProductBean.productName}" required="true" />
+		<p:outputLabel for="productPrice" value="#{labels.productPrice}" />
+		<p:inputText id="productPrice" value="#{agentAdminAgentProductBean.price}" required="true" />
+		<p:outputLabel for="validityDate" value="#{labels.validityDate}" />
+		<p:calendar id="validityDate" value="#{agentAdminAgentProductBean.validityDate}" required="true" pattern="#{entityConstantsBean.dateFormat}" />
+		<p:outputLabel for="currency" value="#{labels.currency}" />
+		<p:selectOneMenu id="currency" value="#{agentAdminAgentProductBean.currencyId}">
+			<f:selectItem itemLabel="Select One" itemValue="" />
+			<f:selectItems value="#{agentAdminAgentProductBean.currenciesList}" var="currency"
+				itemLabel="#{currency.get(entityConstantsBean.currency.currencyName)}" itemValue="#{currency.get(entityConstantsBean.currency.currencyId)}" />
+		</p:selectOneMenu>
+		<!-- <p:outputLabel for="country" value="#{labels.country}" />
+		<p:selectOneMenu id="country" value="#{agentAdminAgentProductBean.countryId}">
+			<f:selectItem itemLabel="Select One" itemValue="" />
+			<f:selectItems value="#{agentAdminAgentProductBean.countriesList}" var="country"
+				itemLabel="#{country.get(entityConstantsBean.country.countryName)}" itemValue="#{country.get(entityConstantsBean.country.countryId)}" />
+		</p:selectOneMenu> -->
+		<p:outputLabel for="photo" value="#{labels.photo}" />
+		<p:fileUpload id="photo" label="#{labels.photo}" value="#{agentAdminAgentProductBean.uploadedPhoto}" mode="simple" skinSimple="true" update="growl"
+			required="true" />
+		<p:commandButton value="#{labels.add}" ajax="false" action="#{agentAdminAgentProductBean.addAgentProduct()}" />
+	</p:panelGrid>
+</h:form>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<classpathProviders version="2.0">
+  <nofacet>
+    <layeredProductPath moduleName="javax.activation.api" slot="main"/>
+    <layeredProductPath moduleName="javax.annotation.api" slot="main"/>
+    <layeredProductPath moduleName="javax.ejb.api" slot="main"/>
+    <layeredProductPath moduleName="javax.el.api" slot="main"/>
+    <layeredProductPath moduleName="javax.enterprise.api" slot="main"/>
+    <layeredProductPath moduleName="javax.faces.api" slot="main"/>
+    <layeredProductPath moduleName="javax.inject.api" slot="main"/>
+    <layeredProductPath moduleName="javax.interceptor.api" slot="main"/>
+    <layeredProductPath moduleName="javax.jms.api" slot="main"/>
+    <layeredProductPath moduleName="javax.jws.api" slot="main"/>
+    <layeredProductPath moduleName="javax.mail.api" slot="main"/>
+    <layeredProductPath moduleName="javax.management.j2ee.api" slot="main"/>
+    <layeredProductPath moduleName="javax.persistence.api" slot="main"/>
+    <layeredProductPath moduleName="javax.resource.api" slot="main"/>
+    <layeredProductPath moduleName="javax.security.auth.message.api" slot="main"/>
+    <layeredProductPath moduleName="javax.security.jacc.api" slot="main"/>
+    <layeredProductPath moduleName="javax.servlet.api" slot="main"/>
+    <layeredProductPath moduleName="javax.servlet.jsp.api" slot="main"/>
+    <layeredProductPath moduleName="javax.servlet.jstl.api" slot="main"/>
+    <layeredProductPath moduleName="javax.transaction.api" slot="main"/>
+    <layeredProductPath moduleName="javax.validation.api" slot="main"/>
+    <layeredProductPath moduleName="javax.ws.rs.api" slot="main"/>
+    <layeredProductPath moduleName="javax.wsdl4j.api" slot="main"/>
+    <layeredProductPath moduleName="javax.xml.bind.api" slot="main"/>
+    <layeredProductPath moduleName="javax.xml.rpc.api" slot="main"/>
+    <layeredProductPath moduleName="javax.xml.soap.api" slot="main"/>
+    <layeredProductPath moduleName="javax.xml.ws.api" slot="main"/>
+    <layeredProductPath moduleName="org.hibernate.validator" slot="main"/>
+    <layeredProductPath moduleName="org.picketbox" slot="main"/>
+    <layeredProductPath moduleName="org.jboss.as.controller-client" slot="main"/>
+    <layeredProductPath moduleName="org.jboss.dmr" slot="main"/>
+    <layeredProductPath moduleName="org.jboss.logging" slot="main"/>
+    <layeredProductPath moduleName="org.jboss.resteasy.resteasy-jaxb-provider" slot="main"/>
+    <layeredProductPath moduleName="org.jboss.resteasy.resteasy-jaxrs" slot="main"/>
+    <layeredProductPath moduleName="org.jboss.resteasy.resteasy-multipart-provider" slot="main"/>
+    <layeredProductPath moduleName="org.jboss.ejb3" slot="main"/>
+    <layeredProductPath moduleName="javax.batch.api" slot="main"/>
+    <layeredProductPath moduleName="javax.enterprise.concurrent.api" slot="main"/>
+    <layeredProductPath moduleName="javax.websocket.api" slot="main"/>
+    <layeredProductPath moduleName="javax.json.api" slot="main"/>
+    <layeredProductPath moduleName="PointsModule" slot="main"/>
+  </nofacet>
+</classpathProviders>

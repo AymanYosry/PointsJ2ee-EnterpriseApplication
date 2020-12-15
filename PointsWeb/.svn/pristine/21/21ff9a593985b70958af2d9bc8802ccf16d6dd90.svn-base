@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form>
+			<p:panelGrid  styleClass="ui-noborder" columns="2">
+				<p:outputLabel for="districtName" value="#{labels.districtName}" />
+				<p:inplace disabled="#{!districtBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<p:inputText id="districtName" value="#{districtBean.districtName}" required="true" />
+				</p:inplace>
+				<p:outputLabel for="countryId" value="#{labels.country}" />
+				<p:inplace disabled="#{!districtBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<f:facet name="output">
+						<p:outputLabel value="#{districtBean.countryName}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:selectOneMenu id="countryId" value="#{districtBean.countryId}" required="true">
+							<f:selectItem itemLabel="Select One" itemValue="" />
+							<f:selectItems value="#{districtBean.countriesList}}" var="country" itemLabel="#{country.get(entityConstantsBean.country.countryName)}"
+								itemValue="#{country.get(entityConstantsBean.country.countryId)}" />
+							<f:ajax event="select" execute="stateId" listener="#{districtBean.loadStatesList()}" />
+						</p:selectOneMenu>
+					</f:facet>
+				</p:inplace>
+				<p:outputLabel for="stateId" value="#{labels.state}" />
+				<p:inplace disabled="#{!districtBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<f:facet name="output">
+						<p:outputLabel value="#{districtBean.stateName}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:selectOneMenu id="stateId" value="#{districtBean.stateId}" required="true">
+							<f:selectItem itemLabel="Select One" itemValue="" />
+							<f:selectItems value="#{districtBean.statesList}" var="state" itemLabel="#{state.get(entityConstantsBean.state.stateName)}"
+								itemValue="#{state.get(entityConstantsBean.state.stateId)}" />
+						</p:selectOneMenu>
+					</f:facet>
+				</p:inplace>
+				<p:commandButton value="#{labels.update}" action="#{districtBean.updateDistrict()}" rendered="#{districtBean.updateEnabled}" />
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

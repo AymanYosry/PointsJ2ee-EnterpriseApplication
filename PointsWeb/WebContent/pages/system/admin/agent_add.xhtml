@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<f:loadBundle basename="resources.application" var="labels" />
+
+<h:form enctype="multipart/form-data">
+	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+	<p:panelGrid styleClass="ui-noborder">
+		<p:row>
+			<p:column>
+				<p:panelGrid styleClass="ui-noborder" columns="2">
+					<p:outputLabel for="tradeMark" value="#{labels.tradeMark}" />
+					<p:inputText id="tradeMark" value="#{sysAdminAgentBean.tradeMark}" required="true" />
+					<p:outputLabel for="callCenter" value="#{labels.callCenter}" />
+					<pe:inputNumber id="callCenter" value="#{sysAdminAgentBean.callCenter}" decimalPlaces="0" thousandSeparator=""/>
+					<p:outputLabel for="administrationAddress" value="#{labels.administrationAdderss}" />
+					<p:inputText id="administrationAddress" value="#{sysAdminAgentBean.administrationAdderss}" required="true" />
+					<p:outputLabel for="administrationPhone" value="#{labels.administrationPhone}" />
+					<p:inputText id="administrationPhone" value="#{sysAdminAgentBean.administrationPhone}" required="true" />
+					<p:outputLabel for="commercialRecordNo" value="#{labels.commercialRecordNo}" />
+					<p:inputText id="commercialRecordNo" value="#{sysAdminAgentBean.commercialRecordNo}" required="true" />
+
+					<p:outputLabel for="logo" value="#{labels.logo}" />
+					<p:fileUpload id="logo" label="#{labels.logo}" value="#{sysAdminAgentBean.uploadedLogo}" mode="simple" skinSimple="true" update="growl"
+						required="true" />
+				</p:panelGrid>
+			</p:column>
+			<p:column style="vertical-align: top;">
+				<p:panelGrid columns="1" styleClass="ui-noborder">
+					<f:facet name="header">
+						<p:outputLabel value="#{labels.categories}" />
+					</f:facet>
+					<p:selectManyMenu id="advanced" value="#{sysAdminAgentBean.categoryIds}" filter="true" filterMatchMode="contains" showCheckbox="true" scrollHeight="180">
+						<f:selectItems value="#{sysAdminAgentBean.categories}" var="category" itemLabel="#{category.get(entityConstantsBean.category.categoryName)}" 
+							itemValue="#{category.get(entityConstantsBean.category.categoryId)}" />
+					</p:selectManyMenu>
+				</p:panelGrid>
+			</p:column>
+			<p:column>
+				<p:panelGrid columns="2" styleClass="ui-noborder">
+					<f:facet name="header">
+						<p:outputLabel value="#{labels.mainBranch}" />
+					</f:facet>
+					<p:outputLabel for="branchName" value="#{labels.branchName}" />
+					<p:inputText id="branchName" value="#{sysAdminAgentBean.branchBean.branchName}" required="true" />
+
+					<p:outputLabel for="tel" value="#{labels.tel}" />
+					<p:inputText id="tel" value="#{sysAdminAgentBean.branchBean.tel}" required="true" />
+
+					<p:outputLabel for="address" value="#{labels.address}" />
+					<p:inputText id="address" value="#{sysAdminAgentBean.branchBean.address}" required="true" />
+
+					<p:outputLabel for="country" value="#{labels.country}" />
+					<p:selectOneMenu id="country" value="#{sysAdminAgentBean.branchBean.countryId}" required="true">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{sysAdminAgentBean.countriesList}" var="country" itemLabel="#{country.get(entityConstantsBean.country.countryName)}"
+							itemValue="#{country.get(entityConstantsBean.country.countryId)}" />
+						<f:ajax listener="#{sysAdminAgentBean.loadStatesList()}" render="state" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="state" value="#{labels.state}" />
+					<p:selectOneMenu id="state" value="#{sysAdminAgentBean.branchBean.stateId}" required="true">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{sysAdminAgentBean.statesList}" var="state" itemLabel="#{state.get(entityConstantsBean.state.stateName)}" itemValue="#{state.get(entityConstantsBean.state.stateId)}" />
+					</p:selectOneMenu>
+
+					<p:commandButton value="#{labels.add}" ajax="false" actionListener="#{sysAdminAgentBean.addAgent()}" />
+				</p:panelGrid>
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column colspan="3">
+				<p:panelGrid styleClass="ui-noborder" columns="1">
+					<f:facet name="header">
+						<p:outputLabel value="#{labels.branchLocationHeader}" />
+					</f:facet>
+					<p:inputText id="locationLatitude" value="#{sysAdminAgentBean.branchBean.locationLatitude}" required="true" title="#{labels.locationLatitude}" />
+					<p:inputText id="locationLongitude" value="#{sysAdminAgentBean.branchBean.locationLongitude}" required="true" title="#{labels.locationLongitude}" />
+					<p:gmap id="gmap" center="30.045, 31.3165" zoom="12" type="ROADMAP" style="width:500px;height:350px">
+						<p:ajax event="pointSelect" listener="#{sysAdminAgentBean.onPointSelect}" update="locationLatitude locationLongitude" />
+					</p:gmap>
+				</p:panelGrid>
+			</p:column>
+		</p:row>
+	</p:panelGrid>
+</h:form>
+</html>

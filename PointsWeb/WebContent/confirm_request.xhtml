@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jstl/core">
+<f:loadBundle basename="resources.application" var="labels" />
+<h:head>
+	<title><h:outputText value="#{labels.statusCodeTitle}" /></title>
+	<h:outputScript library="js" name="SHA512.js" />
+	<script src="resources/js/security.js" />
+</h:head>
+<h:body id="confirm_request_body">
+	<h:form id="cr" onsubmit="hashUserData('cr')">
+		<p:panelGrid columns="2" styleClass="ui-noborder">
+			<h:outputLabel for="user" value="#{labels.mobile}" />
+			<p:inputText id="user" value="#{authenticationBean.mobile}" required="true" label="user" />
+			<h:outputLabel for="password" value="#{labels.requestCode}" />
+			<p:password id="password" value="#{authenticationBean.password}" required="true" label="password" />
+			<h:inputHidden id="hashsum1" value="#{authenticationBean.hashsum1}" />
+			<h:inputHidden id="hashsum2" value="#{authenticationBean.hashsum2}" />
+			<h:inputHidden id="hashsumkey" value="#{secretKeyGenerator.secretKey}" />
+			<h:inputHidden id="secretkey" value="#{authenticationBean.secretKey}" />
+			<h:outputLabel value="" />
+			<h:commandButton type="submit" value="#{labels.confirmRequestBtn}" action="#{authenticationBean.confirmRequest()}" />
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>

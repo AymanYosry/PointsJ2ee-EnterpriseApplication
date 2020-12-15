@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form enctype="multipart/form-data">
+			<p:panelGrid  styleClass="ui-noborder" columns="2" cellpadding="5">
+				<p:outputLabel for="agentName" value="#{labels.agentName}" />
+				<p:outputLabel id="agentName" value="#{sysAdminAgentProductBean.agentName}" />
+				<p:outputLabel for="productName" value="#{labels.productName}" />
+				<p:outputLabel id="productName" value="#{sysAdminAgentProductBean.productName}" />
+				<p:outputLabel for="productPrice" value="#{labels.productPrice}" />
+				<p:outputLabel id="productPrice" value="#{sysAdminAgentProductBean.price}" />
+				<p:outputLabel for="validityDate" value="#{labels.validityDate}" />
+				<p:outputLabel id="validityDate" value="#{sysAdminAgentProductBean.validityDate}" pattern="#{entityConstantsBean.dateFormat}" />
+				<p:outputLabel for="currency" value="#{labels.currency}" />
+				<p:outputLabel id="currency" value="#{sysAdminAgentProductBean.currencyName}" />
+
+				<p:panelGrid  styleClass="ui-noborder">
+					<h:graphicImage url="#{'data:image/jpeg;charset=utf-8;base64, '}#{sysAdminAgentProductBean.photo}" width="100px" height="100px"
+						alt="photo not found" />
+				</p:panelGrid>
+				<p:outputLabel />
+				<p:inputTextarea id="refuseCause" value="#{sysAdminAgentProductBean.refuseCause}" rows="5" cols="30" counter="refuseCauseCounter"
+					maxlength="250" counterTemplate="{0} #{labels.charactersRemaining}." autoResize="false" />
+				<h:outputText id="refuseCauseCounter" />
+
+				<p:commandButton value="#{labels.refuse}" actionListener="#{sysAdminAgentProductBean.refuseProduct}"
+					rendered="#{sysAdminAgentProductBean.statusId!=entityConstantsBean.status.pendingStatusId and sysAdminAgentProductBean.statusId!=entityConstantsBean.status.activeStatusId}" />
+				<p:commandButton value="#{labels.activate}" actionListener="#{sysAdminAgentProductBean.activateProduct()}"
+					rendered="#{sysAdminAgentProductBean.statusId!=entityConstantsBean.status.activeStatusId}" />
+				<p:commandButton value="#{labels.block}" actionListener="#{sysAdminAgentProductBean.blockProduct()}"
+					rendered="#{sysAdminAgentProductBean.statusId!=entityConstantsBean.status.blockStatusId}" />
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

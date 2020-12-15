@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
+<f:loadBundle basename="resources.application" var="labels" />
+<h:head>
+	<h:outputStylesheet name="points-style.css" library="css" />
+	<h:outputStylesheet name="showcase.css" library="css" />
+	<h:outputStylesheet name="perfect-scrollbar.css" library="css" />
+	<h:outputStylesheet name="sh.css" library="css" />
+	<h:outputScript name="perfect-scrollbar.js" library="js" />
+	<h:outputScript name="showcase.js" library="js" />
+	<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+</h:head>
+
+<h:body id="dialog_body">
+	<p:growl id="growl" autoUpdate="true" showDetail="true" />
+	<ui:insert name="content_center">
+
+	</ui:insert>
+</h:body>
+
+</html>

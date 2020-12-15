@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form enctype="multipart/form-data">
+			<p:panelGrid styleClass="ui-noborder">
+				<p:panelGrid columns="2" styleClass="ui-noborder">
+					<p:outputLabel for="promotionDescription" value="#{labels.message}" />
+					<p:inplace disabled="#{!agentAdminAgentPromotionBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<p:inputText id="promotionDescription" value="#{agentAdminAgentPromotionBean.message}" required="" />
+					</p:inplace>
+					<p:outputLabel for="promotionDetails" value="#{labels.messageDetails}" />
+					<p:inplace disabled="#{!agentAdminAgentPromotionBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<p:inputTextarea id="promotionDetails" value="#{agentAdminAgentPromotionBean.messageDetails}" required="" />
+					</p:inplace>
+					<p:outputLabel for="dateOfAnnouncement" value="#{labels.promotionDate}" />
+					<p:inplace disabled="#{!agentAdminAgentPromotionBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<p:calendar id="dateOfAnnouncement" value="#{agentAdminAgentPromotionBean.promotionDate}" required="true"
+							pattern="#{entityConstantsBean.dateFormat}" />
+					</p:inplace>
+					<p:panelGrid  styleClass="ui-noborder">
+						<h:graphicImage url="#{'data:image/jpeg;charset=utf-8;base64, '}#{agentAdminAgentPromotionBean.image}" width="50px" height="50px"
+							alt="image not found" />
+					</p:panelGrid>
+					<p:outputLabel rendered="#{!agentAdminAgentPromotionBean.updateEnabled}"></p:outputLabel>
+					<p:inplace disabled="#{!agentAdminAgentPromotionBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}"
+						label="#{labels.clickToEdit} #{labels.image}" rendered="#{agentAdminAgentPromotionBean.updateEnabled}">
+						<p:fileUpload id="photo" label="#{labels.photo}" value="#{agentAdminAgentPromotionBean.uploadedImage}" mode="simple" skinSimple="true"
+							update="growl" required="true" />
+					</p:inplace>
+					<p:outputLabel for="currency" value="#{labels.currency}" />
+					<p:outputLabel id="currency" value="#{agentAdminAgentPromotionBean.currencyName}" />
+					<p:commandButton value="#{labels.update}" action="#{agentAdminAgentPromotionBean.updateAgentPromotion()}" ajax="false"
+						rendered="#{agentAdminAgentPromotionBean.updateEnabled}" />
+				</p:panelGrid>
+				<p:panelGrid columns="4" styleClass="ui-noborder">
+					<p:outputLabel value="${labels.insEmpName}" />
+					<p:outputLabel value="${agentAdminAgentPromotionBean.insEmpFullName}" />
+					<p:outputLabel value="${labels.insertDate}" />
+					<p:outputLabel value="${agentAdminAgentPromotionBean.insertDate}" />
+					<p:outputLabel value="#{labels.updateEmpName}" rendered="#{agentAdminAgentPromotionBean.updateEmpFullName!=null}" />
+					<p:outputLabel value="${agentAdminAgentPromotionBean.updateEmpFullName}" rendered="#{agentAdminAgentPromotionBean.updateEmpFullName!=null}" />
+					<p:outputLabel value="${labels.updateDate}" rendered="#{agentAdminAgentPromotionBean.updateEmpFullName!=null}" />
+					<p:outputLabel value="${agentAdminAgentPromotionBean.lastUpdateDate}" rendered="#{agentAdminAgentPromotionBean.updateEmpFullName!=null}" />
+					<p:outputLabel value="#{labels.status}" />
+					<p:outputLabel value="#{agentAdminAgentPromotionBean.statusName}" />
+
+				</p:panelGrid>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

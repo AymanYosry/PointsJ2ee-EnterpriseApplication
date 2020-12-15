@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+		<ui:define name="content_center">
+			<h:form>
+				<p:panelGrid  styleClass="ui-noborder" columns="2">
+					<p:outputLabel value="#{labels.receiptNumber}" />
+					<p:outputLabel value="#{sysAdminExchangeBean.pointsExchangeId}" />
+					<p:outputLabel value="#{labels.userFullName}" />
+					<p:outputLabel value="#{sysAdminExchangeBean.profileFullName}" />
+					<p:outputLabel value="#{labels.agent}" /> 
+					<p:outputLabel value="#{sysAdminExchangeBean.tradeMark}" />
+					<p:outputLabel value="#{labels.branch}" />
+					<p:outputLabel value="#{sysAdminExchangeBean.branchName}" />
+					<p:outputLabel value="#{labels.productName}" />
+					<p:outputLabel value="#{sysAdminExchangeBean.productName}" />
+					<p:outputLabel value="#{labels.pointsValue}" />
+					<p:outputLabel value="#{sysAdminExchangeBean.pointsValue}" />
+					<p:outputLabel value="#{labels.priceValue}" />
+					<p:outputLabel value="#{sysAdminExchangeBean.priceValue}" />
+					
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

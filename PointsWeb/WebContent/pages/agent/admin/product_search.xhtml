@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp">
+
+
+
+<ui:composition template="/resources/templates/common/layout.xhtml">
+	<ui:define name="add_new_panel">
+		<ui:include src="product_add.xhtml" />
+	</ui:define>
+	<ui:define name="search_panel">
+		<p:panelGrid  styleClass="ui-noborder" columns="7">
+			<p:outputLabel for="validityDate_from" value="#{labels.validityDate_from}" />
+			<p:calendar id="validityDate_from" value="#{agentAdminAgentProductBean.validityDate_from}" pattern="#{entityConstantsBean.dateFormat}" />
+			<p:outputLabel for="validityDate_to" value="#{labels.validityDate_to}" />
+			<p:calendar id="validityDate_to" value="#{agentAdminAgentProductBean.validityDate_to}" pattern="#{entityConstantsBean.dateFormat}" />
+			<p:outputLabel for="statusId" value="#{labels.statusId}" />
+			<p:selectOneMenu id="statusId" value="#{agentAdminAgentProductBean.statusIdSearch}">
+				<f:selectItem itemLabel="#{labels.selectOne}" itemValue="" />
+				<f:selectItems value="#{agentAdminAgentProductBean.statusesList}" var="status" itemLabel="#{status.get(entityConstantsBean.status.statusName)}"
+					itemValue="#{status.get(entityConstantsBean.status.statusId)}" />
+			</p:selectOneMenu>
+			<p:commandButton value="#{labels.search}" id="search" update="growl search_table" 
+				actionListener="#{agentAdminAgentProductBean.getAgentProducts()}" />
+		</p:panelGrid>
+	</ui:define>
+	<ui:define name="content_center">
+		<em:search_component table_bean="#{agentAdminAgentProductBean}"></em:search_component>
+	</ui:define>
+
+	<ui:define name="more_pre_columns">
+		<p:column style="width:70px;text-align: center">
+			<h:graphicImage url="#{'data:image/jpeg;charset=utf-8;base64, '}#{tableDataRow.get(entityConstantsBean.product.photo)}" width="50px" height="50px"
+				alt="photo not found" />
+		</p:column>
+	</ui:define>
+</ui:composition>
+</html>

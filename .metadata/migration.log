@@ -1,0 +1,26 @@
+
+INFO     Validating project: Points
+INFO     Finished validating project: Points
+
+INFO     Validating project: PointsCommon
+INFO     Finished validating project: PointsCommon
+
+INFO     Validating project: PointsMiddleware
+INFO     Finished validating project: PointsMiddleware
+
+INFO     Validating project: PointsMiddlewareClient
+INFO     Finished validating project: PointsMiddlewareClient
+
+INFO     Validating project: PointsModel
+INFO     Finished validating project: PointsModel
+
+INFO     Validating project: PointsService
+INFO     Finished validating project: PointsService
+
+INFO     Validating project: PointsServiceProxy
+INFO     Finished validating project: PointsServiceProxy
+
+INFO     Validating project: PointsWeb
+INFO     Finished validating project: PointsWeb
+
+Migration complete

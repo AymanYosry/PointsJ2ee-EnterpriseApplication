@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<ui:composition template="/resources/templates/common/layout.xhtml">
+	<ui:define name="search_panel">
+		<p:panelGrid  styleClass="ui-noborder" columns="8">
+			<p:outputLabel for="pointDate_from" value="#{labels.pointDate_from}" />
+			<p:calendar id="pointDate_from" value="#{userPointBean.pointDate_from}" pattern="#{entityConstantsBean.dateFormat}" />
+			<p:outputLabel for="pointDate_to" value="#{labels.pointDate_to}" />
+			<p:calendar id="pointDate_to" value="#{userPointBean.pointDate_to}" pattern="#{entityConstantsBean.dateFormat}" />
+			<p:commandButton value="#{labels.gainedPoints}" id="gained" update="growl search_table" 
+				actionListener="#{userPointBean.userGainedPointsList()}" />
+			<p:commandButton value="#{labels.releasedPoints}" id="released" update="growl search_table" 
+				actionListener="#{userPointBean.userReleasedPointsList()}" />
+			<p:commandButton value="#{labels.allPoints}" id="all" update="growl search_table" 
+				actionListener="#{userPointBean.userPointsList()}" />
+		</p:panelGrid>
+	</ui:define>
+	<ui:define name="content_center">
+		<em:search_component table_bean="#{userPointBean}"></em:search_component>
+	</ui:define>
+</ui:composition>
+</html>

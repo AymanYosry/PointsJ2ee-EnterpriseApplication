@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: core-1.54.0.0.jar pg-1.54.0.0.jar pkix-1.54.0.0.jar prov-1
+ .54.0.0.jar
+

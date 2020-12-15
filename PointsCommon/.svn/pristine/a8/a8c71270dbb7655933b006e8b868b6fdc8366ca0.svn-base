@@ -1,0 +1,117 @@
+/**
+ * 
+ */
+package com.ewhale.points.common.security.cms.android;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.security.InvalidKeyException;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.SignatureException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
+
+import com.ewhale.points.common.exception.AuthenticationSecurityException;
+import com.ewhale.points.common.security.base64.BASE64Decoder;
+import com.ewhale.points.common.util.AppConstants;
+
+/**
+ * @author Ayman Yosry
+ *
+ */
+public class DataVerifier implements Serializable
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String SIGNATURE_ALGORITHM = AppConstants.SecurityConstants.SHA256withRSA_ALGORITHM;
+
+	public DataVerifier()
+	{
+		System.out.println("INSIDE ======>> "+this.getClass().getName());
+	}
+
+	/**
+	 * Method to verify given signed data
+	 * 
+	 * @param data
+	 * @param signature
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public boolean verify(final String data, final String signature, final String pubKey)
+			throws AuthenticationSecurityException
+	{
+		BASE64Decoder b64 = new BASE64Decoder();
+		boolean isVerified = false;
+		final String stringToVerify = data.replaceAll("\\r\\n", "\\n");
+		final String dataSignature = signature.replace(AppConstants.SecurityConstants.SIGNATURE_SEPARATOR, "\n");
+		final String publicKey = pubKey.replace(AppConstants.SecurityConstants.SIGNATURE_SEPARATOR, "\n");
+
+		byte[] dataToVerify;
+		byte[] sign;
+		byte[] encPublicKey;
+		try
+		{
+			dataToVerify = b64.decodeBuffer(stringToVerify);
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 1");
+			sign = b64.decodeBuffer(dataSignature);
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 2");
+			encPublicKey = b64.decodeBuffer(publicKey);
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 3");
+			isVerified = verify(dataToVerify, sign, encPublicKey);
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 4");
+		}
+		catch (IOException e)
+		{
+			throw new AuthenticationSecurityException("PROBLEM IN BASE 64 DECODING ", e);
+		}
+
+		return isVerified;
+	}
+
+	/**
+	 * 
+	 * @param data
+	 * @param sigToVerify
+	 * @return
+	 * @throws AuthenticationSecurityException
+	 */
+	public boolean verify(byte[] data, byte[] sigToVerify, byte[] encPublicKey) throws AuthenticationSecurityException
+	{
+		boolean isVerified = false;
+		try
+		{
+			X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encPublicKey);
+			KeyFactory keyFactory = KeyFactory.getInstance(AppConstants.SecurityConstants.RSA_ALGORITHM);
+			PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
+			
+			Signature sig = Signature.getInstance(SIGNATURE_ALGORITHM);
+			sig.initVerify(pubKey);
+			sig.update(data);
+			isVerified = sig.verify(sigToVerify);
+		}
+		catch (NoSuchAlgorithmException e)
+		{
+			throw new AuthenticationSecurityException("XXXXXX  NoSuchAlgorithmException", e);
+		}
+		catch (InvalidKeyException e)
+		{
+			throw new AuthenticationSecurityException("XXXXXX  InvalidKeyException", e);
+		}
+		catch (SignatureException e)
+		{
+			throw new AuthenticationSecurityException("XXXXXX  SignatureException", e);
+		}
+		catch (InvalidKeySpecException e)
+		{
+			throw new AuthenticationSecurityException("XXXXXX  InvalidKeySpecException", e);
+		}
+
+		return isVerified;
+	}
+}

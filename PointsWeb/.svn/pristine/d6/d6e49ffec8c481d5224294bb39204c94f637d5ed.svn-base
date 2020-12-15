@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form enctype="multipart/form-data">
+			<p:panelGrid styleClass="ui-noborder" columns="3">
+				<p:panelGrid styleClass="ui-noborder" columns="2">
+					<p:outputLabel for="tradeMark" value="#{labels.tradeMark}" />
+					<p:inplace disabled="#{!sysAdminAgentBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<p:inputText id="tradeMark" value="#{sysAdminAgentBean.tradeMark}" required="true" />
+					</p:inplace>
+					<p:outputLabel for="callCenter" value="#{labels.callCenter}" />
+					<p:inplace disabled="#{!sysAdminAgentBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<pe:inputNumber id="callCenter" value="#{sysAdminAgentBean.callCenter}" decimalPlaces="0" thousandSeparator="" maxValue="999999"/>
+					</p:inplace>
+					<p:outputLabel for="administrationAddress" value="#{labels.administrationAdderss}" />
+					<p:inplace disabled="#{!sysAdminAgentBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<p:inputText id="administrationAddress" value="#{sysAdminAgentBean.administrationAdderss}" required="true" />
+					</p:inplace>
+					<p:outputLabel for="administrationPhone" value="#{labels.administrationPhone}" />
+					<p:inplace disabled="#{!sysAdminAgentBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<p:inputText id="administrationPhone" value="#{sysAdminAgentBean.administrationPhone}" required="true" />
+					</p:inplace>
+					<p:outputLabel for="commercialRecordNo" value="#{labels.commercialRecordNo}" />
+					<p:inplace disabled="#{!sysAdminAgentBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+						<p:inputText id="commercialRecordNo" value="#{sysAdminAgentBean.commercialRecordNo}" required="true" />
+					</p:inplace>
+					<p:panelGrid styleClass="ui-noborder">
+						<!-- <p:graphicImage alt="logo not found" value="#{imagesBean.logoImage}" width="100px" height="100px">
+						<f:param name="entityId" value="#{sysAdminAgentBean.agentId}" />
+					</p:graphicImage> -->
+						<h:graphicImage id="logo" url="#{'data:image/jpeg;charset=utf-8;base64, '}#{sysAdminAgentBean.logo}" width="50px" height="50px"
+							alt="logo not found" />
+					</p:panelGrid>
+
+					<p:fileUpload id="uploadPhoto" label="#{labels.update} #{labels.logo}" value="#{sysAdminAgentBean.uploadedLogo}" mode="simple" skinSimple="true"
+						update="growl" required="true" rendered="#{sysAdminAgentBean.updateEnabled}" />
+
+				</p:panelGrid>
+				<p:panelGrid styleClass="ui-noborder" width="100px"></p:panelGrid>
+				<p:panelGrid styleClass="ui-noborder">
+					<f:facet name="header">
+						<p:outputLabel value="#{labels.categories}" />
+					</f:facet>
+					<p:dataList value="#{sysAdminAgentBean.categoryList}" var="category" type="ordered">
+						<p:outputLabel value="#{category.get(entityConstantsBean.category.categoryName)}" />
+					</p:dataList>
+					<p:inplace rendered="#{sysAdminAgentBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}" label="#{labels.clickToEdit} #{labels.categories}">
+						<p:selectManyMenu id="categories" value="#{sysAdminAgentBean.categoryIds}" filter="true" filterMatchMode="contains" showCheckbox="true"
+							scrollHeight="180">
+							<f:selectItems value="#{sysAdminAgentBean.categories}" var="category" itemLabel="#{category.get(entityConstantsBean.category.categoryName)}"
+								itemValue="#{category.get(entityConstantsBean.category.categoryId)}" />
+						</p:selectManyMenu>
+					</p:inplace>
+				</p:panelGrid>
+			</p:panelGrid>
+			<p:commandButton value="#{labels.update}" actionListener="#{sysAdminAgentBean.updateAgent()}" rendered="#{sysAdminAgentBean.updateEnabled}"
+				ajax="false" update="growl logo" />
+
+			<p:commandButton value="#{labels.block}" actionListener="#{sysAdminAgentBean.blockAgent()}"
+				rendered="#{sysAdminAgentBean.statusId!=entityConstantsBean.status.blockStatusId}" />
+			<p:commandButton value="#{labels.activate}" actionListener="#{sysAdminAgentBean.activateAgent()}"
+				rendered="#{sysAdminAgentBean.statusId!=entityConstantsBean.status.activeStatusId}" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+
+</html>

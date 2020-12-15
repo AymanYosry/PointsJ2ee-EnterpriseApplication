@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+	<wb-module deploy-name="Points">
+		<wb-resource deploy-path="/" source-path="/" tag="defaultRootSource"/>
+		<dependent-module archiveName="PointsModel.jar" deploy-path="/lib" handle="module:/resource/PointsModel/PointsModel">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module archiveName="PointsMiddleware.jar" deploy-path="/" handle="module:/resource/PointsMiddleware/PointsMiddleware">
+			<dependent-object>Module_1448177067078</dependent-object>
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module archiveName="PointsMiddlewareClient.jar" deploy-path="/" handle="module:/resource/PointsMiddlewareClient/PointsMiddlewareClient">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module archiveName="PointsCommon.jar" deploy-path="/lib" handle="module:/resource/PointsCommon/PointsCommon">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+        <dependent-module archiveName="PointsService.war" deploy-path="/" handle="module:/resource/PointsService/PointsService">
+            <dependent-object>Module_1451297736237</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+	</wb-module>
+</project-modules>

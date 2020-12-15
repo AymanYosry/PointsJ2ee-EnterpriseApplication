@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application id="Application_ID" version="7"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd">
+	<display-name>Points</display-name>
+	<module id="Module_1448177067078">
+		<ejb>PointsMiddleware.jar</ejb>
+	</module>
+	<module id="Module_1451297736237">
+		<web>
+			<web-uri>PointsService.war</web-uri>
+			<context-root>PointsService</context-root>
+		</web>
+	</module>
+</application> 

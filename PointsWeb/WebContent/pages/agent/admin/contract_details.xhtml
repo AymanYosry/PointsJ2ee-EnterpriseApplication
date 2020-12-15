@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+
+<ui:composition template="/resources/templates/common/layout.xhtml">
+	<ui:define name="content_center">
+		<h:form>
+			<p:panelGrid  styleClass="ui-noborder" columns="2">
+
+				<p:outputLabel for="currency" value="#{labels.currency}" />
+				<p:outputLabel id="currency" value="#{agentAdminAgentContractBean.currencyName}" />
+
+				<p:outputLabel for="discountPercent" value="#{labels.discountPercent}" />
+				<p:inplace disabled="#{!sysAdminAgentContractBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<pe:inputNumber id="discountPercent" value="#{agentAdminAgentContractBean.discountPercent}" decimalPlaces="0" thousandSeparator="" minValue="1"
+						maxValue="100" required="true" />
+				</p:inplace>
+
+				<p:outputLabel for="pointsPercent" value="#{labels.pointsPercent}" />
+				<p:outputLabel id="pointsPercent" value="#{agentAdminAgentContractBean.pointsPercent}" />
+
+				<p:outputLabel for="profitPercent" value="#{labels.profitPercent}" />
+					<p:outputLabel  id="profitPercent" value="#{agentAdminAgentContractBean.profitPercent}"  />
+				
+				<p:outputLabel for="startContractDate" value="#{labels.startContractDate}" />
+					<p:outputLabel id="startContractDate" value="#{agentAdminAgentContractBean.startDateStr}" />
+				
+				<p:outputLabel for="endContractDate" value="#{labels.endContractDate}" />
+				<p:outputLabel  id="endContractDate" value="#{agentAdminAgentContractBean.endDateStr}" />
+				
+				<p:outputLabel for="updateContractEmp" value="#{labels.updateEmpName}" />
+				<p:outputLabel  id="updateContractEmp" value="#{agentAdminAgentContractBean.updateEmpFullName}" />
+				
+				<p:outputLabel for="updateDate" value="#{labels.updateDate}" />
+				<p:outputLabel  id="updateDate" value="#{agentAdminAgentContractBean.updateDateStr}" />
+				<p:commandButton value="#{labels.update}" actionListener="#{agentAdminAgentContractBean.updateAgentContract()}" update="growl">
+
+				</p:commandButton>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+
+</html>

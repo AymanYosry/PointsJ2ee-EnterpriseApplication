@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:form id="rf" onsubmit="validateData()">
+	<p:panelGrid columns="2" styleClass="ui-noborder">
+		<p:outputLabel for="firstname" value="#{labels.firstName}" />
+		<p:inputText id="firstname" value="#{sysAdminAgentEmployeeBean.firstName}" required="true" label="firstname" />
+		<p:outputLabel for="lastname" value="#{labels.lastName}" />
+		<p:inputText id="lastname" value="#{sysAdminAgentEmployeeBean.lastName}" required="true" label="lastname" />
+		<p:outputLabel for="user" value="#{labels.mobile}" />
+		<p:inputText id="user" value="#{sysAdminAgentEmployeeBean.mobile}" required="true" label="user" />
+		<p:outputLabel for="confirmmobile" value="#{labels.confirmMobile}" />
+		<p:inputText id="confirmmobile" required="true" label="confirmmobile" />
+		<p:commandButton type="submit" value="#{labels.registerBtn}" action="#{sysAdminAgentEmployeeBean.addAgentEmployee()}" />
+	</p:panelGrid>
+</h:form>
+
+
+
+</html>

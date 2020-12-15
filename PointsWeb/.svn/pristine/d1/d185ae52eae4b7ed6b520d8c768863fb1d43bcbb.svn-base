@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/templates/common/layout_dialog.xhtml">
+	<ui:define name="content_center">
+		<h:form>
+
+			<p:panelGrid columns="2" styleClass="ui-noborder">
+				<p:outputLabel for="firstname" value="#{labels.firstName}" />
+				<p:outputLabel id="firstname" value="#{sysAdminEmployeeBean.firstName}" label="firstname" />
+				<p:outputLabel for="lastname" value="#{labels.lastName}" />
+				<p:outputLabel id="lastname" value="#{sysAdminEmployeeBean.lastName}" label="lastname" />
+				<p:outputLabel for="user" value="#{labels.mobile}" />
+				<p:outputLabel id="user" value="#{sysAdminEmployeeBean.mobile}" label="user" />
+
+				<p:outputLabel for="roleId" value="#{labels.role}" />
+				<p:inplace disabled="#{!sysAdminEmployeeBean.updateEnabled}" emptyLabel="#{labels.clickToEdit}">
+					<f:facet name="output">
+						<p:outputLabel value="#{sysAdminEmployeeBean.roleName}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:selectOneMenu id="roleId" value="#{sysAdminEmployeeBean.roleId}">
+							<f:selectItem itemLabel="#{labels.selectOne}" />
+							<f:selectItems value="#{sysAdminEmployeeBean.rolesList}" var="role" itemLabel="#{role.get(entityConstantsBean.role.roleName)}"
+								itemValue="#{role.get(entityConstantsBean.role.roleId)}" />
+						</p:selectOneMenu>
+					</f:facet>
+				</p:inplace>
+				<p:commandButton value="#{labels.update}" action="#{sysAdminEmployeeBean.updateEmployeeRole()}"
+					rendered="#{sysAdminEmployeeBean.updateEnabled}" />
+				<p:commandButton type="submit" value="#{labels.activate}" action="#{sysAdminEmployeeBean.activateStatus()}" />
+				<p:commandButton type="submit" value="#{labels.block}" action="#{sysAdminEmployeeBean.blockStatus()}" />
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Error</title>
+</h:head>
+
+<h:body>
+	<h3>
+		<h:outputText value="ERROR PAGE" />
+	</h3>
+	
+	<br /><hr />
+	<h:outputLabel value="Exception Code: " />
+	<h:outputText value="#{errorHandler.statusCode}"></h:outputText>
+	
+	<br /><hr />
+	<h:outputLabel value="Exception Calss: " />
+	<h:outputText value="#{errorHandler.exception}"></h:outputText>
+	
+	<br /><hr />
+	<h:outputLabel value="Error Desscription: " />
+	<h:outputText value="#{errorHandler.message}"></h:outputText>
+	
+</h:body>
+</html>
